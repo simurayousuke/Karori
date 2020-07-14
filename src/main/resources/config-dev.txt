@@ -1,0 +1,11 @@
+devMode=true
+
+redisHost=zhuangcloud.cn
+redisPort=6379
+redisPassword=qS0v8gWIyr0xyOHD
+
+redisUserDatabase=user
+
+mysqlHost=zhuangcloud.cn
+mysqlPort=3306
+mysqlPassword=g9E5YGEO-brqG+5(
