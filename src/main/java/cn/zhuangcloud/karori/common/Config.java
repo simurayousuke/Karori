@@ -44,6 +44,6 @@ public class Config extends JFinalConfig {
     }
 
     public void onStart() {
-        
+
     }
 }
