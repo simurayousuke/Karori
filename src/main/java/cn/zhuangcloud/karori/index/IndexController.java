@@ -1,12 +1,12 @@
 package cn.zhuangcloud.karori.index;
 
-import com.jfinal.core.Controller;
+import cn.zhuangcloud.karori.common.MyController;
 import com.jfinal.kit.PropKit;
 
-public class IndexController extends Controller {
+public class IndexController extends MyController {
 
     public void index() {
-        set("title", "index");
+        title("index");
         set("devMode", PropKit.get("devMode"));
         render("index.html");
     }

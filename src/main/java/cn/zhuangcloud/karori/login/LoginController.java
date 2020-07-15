@@ -1,11 +1,12 @@
 package cn.zhuangcloud.karori.login;
 
-import com.jfinal.core.Controller;
+import cn.zhuangcloud.karori.common.MyController;
 
-public class LoginController extends Controller {
+public class LoginController extends MyController {
 
     public void index() {
-        renderText("Building");
+        title("login");
+        render("index.html");
     }
 
 }
