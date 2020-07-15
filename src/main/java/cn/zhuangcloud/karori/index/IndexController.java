@@ -6,7 +6,8 @@ import com.jfinal.kit.PropKit;
 public class IndexController extends Controller {
 
     public void index() {
-
-        renderText(PropKit.get("devMode"));
+        set("title", "index");
+        set("devMode", PropKit.get("devMode"));
+        render("index.html");
     }
 }

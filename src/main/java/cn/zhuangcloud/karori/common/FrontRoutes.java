@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common;
 
+import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
 import cn.zhuangcloud.karori.common.version.VersionController;
 import cn.zhuangcloud.karori.hello.HelloController;
 import cn.zhuangcloud.karori.index.IndexController;
@@ -8,8 +9,9 @@ import com.jfinal.config.Routes;
 
 public class FrontRoutes extends Routes {
     public void config() {
-        setBaseViewPath("/view/front");
-        add("/", IndexController.class);
+        addInterceptor(new ExceptionInterceptor());
+        setBaseViewPath("/view");
+        add("/", IndexController.class, "index");
         add("/hello", HelloController.class);
         add("/login", LoginController.class);
         add("/version", VersionController.class);

@@ -29,6 +29,7 @@ public class Config extends JFinalConfig {
     }
 
     public void configEngine(Engine me) {
+        me.addSharedFunction("/common/_layout.html");
     }
 
     public void configConstant(Constants me) {
