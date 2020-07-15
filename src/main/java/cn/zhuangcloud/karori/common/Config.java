@@ -2,6 +2,7 @@ package cn.zhuangcloud.karori.common;
 
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
+import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -40,12 +41,15 @@ public class Config extends JFinalConfig {
     }
 
     public void configPlugin(Plugins me) {
-        RedisPlugin redisUser = new RedisPlugin(p.get("redisUserDatabase"), p.get("redisHost"), p.getInt("redisPort"), p.get("redisPassword"));
+        RedisPlugin redisUser = new RedisPlugin("user", p.get("redisHost"), p.getInt("redisPort"), p.get("redisPassword"));
         me.add(redisUser);
 
         DruidPlugin dp = createDruidPlugin();
         me.add(dp);
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+        //todo getRootClassPath?
+        arp.setBaseSqlTemplatePath(PathKit.getRootClassPath() + "/sql");
+        arp.addSqlTemplate("all.sql");
         _MappingKit.mapping(arp);
         me.add(arp);
     }
