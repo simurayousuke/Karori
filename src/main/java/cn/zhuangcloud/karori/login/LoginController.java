@@ -9,4 +9,8 @@ public class LoginController extends MyController {
         render("index.html");
     }
 
+    public void v1() {
+
+    }
+
 }

@@ -1,1 +1,1 @@
-alert("This page is still under building.");
+//alert("This page is still under building.");
