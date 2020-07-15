@@ -16,25 +16,35 @@
         <div class="collapse navbar-collapse navbar-collapse-example">
             <!-- 一般导航项目 -->
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/version">Version</a></li>
+                <li><a href="/">#(_res.get("home"))</a></li>
+                <li><a href="/version">#(_res.get("version"))</a></li>
             </ul>
             <!-- 右侧的导航项目 -->
             <ul class="nav navbar-nav navbar-right">
                 #if(user)
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">#(user.username ?? "unknown") <b
-                            class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">#(user.username ??
+                        _res.get("unknownUser")) <b
+                                class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/version">Version</a></li>
+                        <li><a href="/">#(_res.get("home"))</a></li>
+                        <li><a href="/version">#(_res.get("version"))</a></li>
                         <li class="divider"></li>
-                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/logout">#(_res.get("logout"))</a></li>
                     </ul>
                 </li>
                 #else
-                <li><a href="/login">Login</a></li>
+                <li><a href="/login">#(_res.get("login"))</a></li>
                 #end
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">#(_res.get("changeLanguage")) <b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="javascript:language('en_US');">#(_res.get("english"))</a></li>
+                        <li><a href="javascript:language('zh_CN');">#(_res.get("simplifiedChinese"))</a></li>
+                        <li><a href="javascript:language('ja_JP');">#(_res.get("japanese"))</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!-- END .navbar-collapse -->
     </div>

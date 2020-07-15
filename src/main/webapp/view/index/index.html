@@ -1,10 +1,10 @@
 #@layout()
 #define main()
 <div class="container">
-    devMode:#(devMode)<br>
-    version:#(cn.zhuangcloud.karori.common.Start::version)<br>
+    #(_res.get("devMode")):#(devMode)<br>
+    #(_res.get("version")):#(version)<br>
     #if(!user)
-    PLEASE LOGIN
+    #(_res.get("pleaseLogin"))
     #end
 
     <form>
@@ -23,5 +23,5 @@
 #end
 
 #define js()
-<script src="/js/index.js?v=#(version)"></script>
+<script src="/js/EAN.js?v=#(version)"></script>
 #end

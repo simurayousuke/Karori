@@ -4,6 +4,7 @@ import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
 import cn.zhuangcloud.karori.common.interceptor.StaticInterceptor;
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
+import com.jfinal.i18n.I18nInterceptor;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -40,6 +41,8 @@ public class Config extends JFinalConfig {
         me.setDevMode(Start.devMode);
         me.setInjectDependency(true);
         //me.setInjectSuperClass(true);
+        me.setI18nDefaultBaseName("i18n");
+        me.setI18nDefaultLocale("en_US");
     }
 
     public void configPlugin(Plugins me) {
@@ -58,6 +61,7 @@ public class Config extends JFinalConfig {
     public void configInterceptor(Interceptors me) {
         me.addGlobalActionInterceptor(new ExceptionInterceptor());
         me.addGlobalActionInterceptor(new StaticInterceptor());
+        me.addGlobalActionInterceptor(new I18nInterceptor());
     }
 
     public void configHandler(Handlers me) {

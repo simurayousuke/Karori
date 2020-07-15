@@ -1,7 +1,7 @@
 #@layout()
 #define main()
 <div class="container">
-    devMode:#(devMode)<br>
-    version:#(version)
+    #(_res.get("devMode")):#(devMode)<br>
+    #(_res.get("version")):#(version)
 </div>
 #end

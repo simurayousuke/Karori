@@ -4,7 +4,6 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.ActionException;
 import com.jfinal.core.Controller;
-import com.jfinal.kit.Ret;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,7 @@ public class ExceptionInterceptor implements Interceptor {
         } catch (Exception e) {
             //System.out.println(e.toString());
             LOG.error(e.getMessage(), e);
-            controller.renderJson(Ret.fail("msg", e.getMessage()));
+            controller.renderError(500);
         }
     }
 }
