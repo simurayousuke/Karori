@@ -46,7 +46,6 @@ public class Config extends JFinalConfig {
         DruidPlugin dp = createDruidPlugin();
         me.add(dp);
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
-        //todo getRootClassPath?
         arp.setBaseSqlTemplatePath("/sql");
         arp.addSqlTemplate("all.sql");
         _MappingKit.mapping(arp);

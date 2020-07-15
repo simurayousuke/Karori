@@ -27,6 +27,12 @@ public class LoginService {
         return null == token ? null : Redis.use("user").get(token);
     }
 
+    private String setAndGetToken(User user) {
+        String token = StrKit.getRandomUUID();
+        Redis.use("user").setex(token, 60 * 60 * 24, user);
+        return token;
+    }
+
     public boolean isLogin(String token) {
         return null != findByToken(token);
     }
@@ -37,9 +43,19 @@ public class LoginService {
             return null;
         if (!user.getPwd().equals(hash(password, user.getSalt())))
             return null;
-        String token = StrKit.getRandomUUID();
-        Redis.use("user").setex(token, 60 * 60 * 24, user);
-        return token;
+        return setAndGetToken(user);
+    }
+
+    public String reg(String username, String password) {
+        if (null != findByUsername(username))
+            return null;
+        User user = new User();
+        user.setUsername(username);
+        user.setSalt(StrKit.getRandomUUID());
+        user.setPwd(hash(password, user.getSalt()));
+        if (!user.save())
+            return null;
+        return setAndGetToken(user);
     }
 
 }
