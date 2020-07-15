@@ -23,7 +23,7 @@ public class LoginService {
         return dao.findFirst(dao.getSqlPara("user.findByUsername", username));
     }
 
-    private User findByToken(String token) {
+    public User findByToken(String token) {
         return null == token ? null : Redis.use("user").get(token);
     }
 
@@ -44,6 +44,10 @@ public class LoginService {
         if (!user.getPwd().equals(hash(password, user.getSalt())))
             return null;
         return setAndGetToken(user);
+    }
+
+    public void logout(String token) {
+        Redis.use("user").del(token);
     }
 
     public String reg(String username, String password) {

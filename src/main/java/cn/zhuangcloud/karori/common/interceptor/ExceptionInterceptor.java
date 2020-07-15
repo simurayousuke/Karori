@@ -1,8 +1,8 @@
 package cn.zhuangcloud.karori.common.interceptor;
 
-import cn.zhuangcloud.karori.common.Start;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.core.ActionException;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.Ret;
 import org.slf4j.Logger;
@@ -17,8 +17,9 @@ public class ExceptionInterceptor implements Interceptor {
     public void intercept(Invocation inv) {
         Controller controller = inv.getController();
         try {
-            controller.set("version", Start.version);
             inv.invoke();
+        } catch (ActionException e) {
+            throw e;
         } catch (Exception e) {
             //System.out.println(e.toString());
             LOG.error(e.getMessage(), e);

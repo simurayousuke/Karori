@@ -3,6 +3,7 @@ package cn.zhuangcloud.karori.login;
 import cn.zhuangcloud.karori.common.MyController;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Inject;
+import com.jfinal.core.ActionKey;
 import com.jfinal.ext.interceptor.POST;
 
 public class LoginController extends MyController {
@@ -32,6 +33,13 @@ public class LoginController extends MyController {
         }
         setCookie("token", token, 60 * 60 * 24);
         redirect("/");
+    }
+
+    @ActionKey("/logout")
+    public void logout() {
+        loginService.logout(getCookie("token"));
+        removeCookie("token");
+        redirect("/login");
     }
 
 }

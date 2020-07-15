@@ -1,5 +1,7 @@
 package cn.zhuangcloud.karori.common;
 
+import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
+import cn.zhuangcloud.karori.common.interceptor.StaticInterceptor;
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.kit.Prop;
@@ -34,7 +36,8 @@ public class Config extends JFinalConfig {
 
     public void configConstant(Constants me) {
         loadConfig();
-        me.setDevMode(p.getBoolean("devMode", false));
+        Start.devMode = p.getBoolean("devMode", false);
+        me.setDevMode(Start.devMode);
         me.setInjectDependency(true);
         //me.setInjectSuperClass(true);
     }
@@ -53,6 +56,8 @@ public class Config extends JFinalConfig {
     }
 
     public void configInterceptor(Interceptors me) {
+        me.addGlobalActionInterceptor(new ExceptionInterceptor());
+        me.addGlobalActionInterceptor(new StaticInterceptor());
     }
 
     public void configHandler(Handlers me) {
