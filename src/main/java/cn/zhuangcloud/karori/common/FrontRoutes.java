@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common;
 
+import cn.zhuangcloud.karori.common.version.VersionController;
 import cn.zhuangcloud.karori.hello.HelloController;
 import cn.zhuangcloud.karori.index.IndexController;
 import cn.zhuangcloud.karori.login.LoginController;
@@ -11,5 +12,6 @@ public class FrontRoutes extends Routes {
         add("/", IndexController.class);
         add("/hello", HelloController.class);
         add("/login", LoginController.class);
+        add("/version", VersionController.class);
     }
 }

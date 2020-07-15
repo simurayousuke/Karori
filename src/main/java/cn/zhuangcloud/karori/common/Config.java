@@ -1,28 +1,27 @@
 package cn.zhuangcloud.karori.common;
 
+import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
+import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
-import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 
 public class Config extends JFinalConfig {
 
-    /**
-     * 注意：用于启动的 main 方法可以在任意 java 类中创建，在此仅为方便演示
-     *      才将 main 方法放在了 DemoConfig 中
-     *
-     *      开发项目时，建议新建一个 App.java 或者 Start.java 这样的专用
-     *      启动入口类放置用于启动的 main 方法
-     */
-    public static void main(String[] args) {
-        PropKit.use("config.txt").appendIfExists("config-dev.txt");
-        UndertowServer.start(Config.class, 80, PropKit.getBoolean("devMode", false));
+    static Prop p;
+
+    static void loadConfig() {
+        if (null == p)
+            p = PropKit.useFirstFound("config-dev.txt", "config.txt");
     }
 
-    public void configConstant(Constants me) {
-        PropKit.use("config.txt").appendIfExists("config-dev.txt");
-        me.setDevMode(PropKit.getBoolean("devMode", false));
+    public static DruidPlugin createDruidPlugin() {
+        loadConfig();
+        String connUrl = "jdbc:mysql://" + p.get("mysqlHost") + "/" + p.get("mysqlDatabase", "karori");
+        return new DruidPlugin(connUrl, p.get("mysqlUser", "karori"), p.get("mysqlPassword"));
     }
 
     public void configRoute(Routes me) {
@@ -32,9 +31,22 @@ public class Config extends JFinalConfig {
     public void configEngine(Engine me) {
     }
 
+    public void configConstant(Constants me) {
+        loadConfig();
+        me.setDevMode(p.getBoolean("devMode", false));
+        //me.setInjectDependency(true);
+        //me.setInjectSuperClass(true);
+    }
+
     public void configPlugin(Plugins me) {
-        RedisPlugin redisUser = new RedisPlugin(PropKit.get("redisUserDatabase"), PropKit.get("redisHost"), PropKit.getInt("redisPort"), PropKit.get("redisPassword"));
+        RedisPlugin redisUser = new RedisPlugin(p.get("redisUserDatabase"), p.get("redisHost"), p.getInt("redisPort"), p.get("redisPassword"));
         me.add(redisUser);
+
+        DruidPlugin dp = createDruidPlugin();
+        me.add(dp);
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+        _MappingKit.mapping(arp);
+        me.add(arp);
     }
 
     public void configInterceptor(Interceptors me) {
