@@ -11,8 +11,10 @@ public class LoginController extends MyController {
     LoginService loginService;
 
     public void index() {
-        if (loginService.isLogin(getCookie("token")))
+        if (loginService.isLogin(getCookie("token"))) {
             redirect("/");
+            return;
+        }
         title("login");
         render("index.html");
     }
@@ -24,8 +26,10 @@ public class LoginController extends MyController {
     @Before({POST.class})
     public void v1(String username, String password) {
         String token = loginService.login(username, password);
-        if (null == token)
+        if (null == token) {
             redirect("/login/error");
+            return;
+        }
         setCookie("token", token, 60 * 60 * 24);
         redirect("/");
     }

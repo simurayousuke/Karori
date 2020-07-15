@@ -2,7 +2,6 @@ package cn.zhuangcloud.karori.common;
 
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
-import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -36,7 +35,7 @@ public class Config extends JFinalConfig {
     public void configConstant(Constants me) {
         loadConfig();
         me.setDevMode(p.getBoolean("devMode", false));
-        //me.setInjectDependency(true);
+        me.setInjectDependency(true);
         //me.setInjectSuperClass(true);
     }
 
@@ -48,7 +47,7 @@ public class Config extends JFinalConfig {
         me.add(dp);
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
         //todo getRootClassPath?
-        arp.setBaseSqlTemplatePath(PathKit.getRootClassPath() + "/sql");
+        arp.setBaseSqlTemplatePath("/sql");
         arp.addSqlTemplate("all.sql");
         _MappingKit.mapping(arp);
         me.add(arp);
