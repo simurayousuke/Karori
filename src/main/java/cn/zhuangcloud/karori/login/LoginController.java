@@ -9,8 +9,9 @@ public class LoginController extends MyController {
         render("index.html");
     }
 
-    public void v1() {
 
+    public void v1(String username, String password) {
+        renderText(username + "@" + password);
     }
 
 }
