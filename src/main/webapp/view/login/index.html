@@ -4,13 +4,13 @@
     Building...
     <form action="/login/v1" method="post">
         <div class="input-control has-icon-left">
-            <input class="form-control" id="inputAccount" name="username" placeholder="#(_res.get(" username"))"
-            type="text">
+            <input class="form-control" id="inputAccount" name="username" placeholder='#(_res.get("username"))'
+                   type="text">
             <label class="input-control-icon-left" for="inputAccount"><i class="icon icon-user "></i></label>
         </div>
         <div class="input-control has-icon-left">
-            <input class="form-control" id="inputPassword" name="password" passwordplaceholder="#(_res.get(""))"
-            type="password">
+            <input class="form-control" id="inputPassword" name="password" placeholder='#(_res.get("password"))'
+                   type="password">
             <label class="input-control-icon-left" for="inputPassword"><i class="icon icon-key"></i></label>
         </div>
         <button class="btn btn-block btn-primary" type="submit">#(_res.get("login"))</button>
