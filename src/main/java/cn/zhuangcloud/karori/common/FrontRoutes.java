@@ -15,5 +15,12 @@ public class FrontRoutes extends Routes {
         add("/login", LoginController.class);
         add("/version", VersionController.class);
         add("/reg", RegController.class);
+
+        //todo
+        add("/food", IndexController.class);
+        add("/log", IndexController.class);
+        add("/statistic", IndexController.class);
+        add("/upload", IndexController.class);
+        add("/share", IndexController.class);
     }
 }
