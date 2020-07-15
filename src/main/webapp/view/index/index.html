@@ -6,5 +6,22 @@
     #if(!user)
     PLEASE LOGIN
     #end
+
+    <form>
+        <div class="input-field input-group input-control has-label-left" style="width: 250px;">
+            <label class="input-control-label-left" for="isbn_input">EAN:</label>
+            <input class="isbn form-control" id="isbn_input" type="text"/>
+            <button class="icon-barcode button scan input-control-label-right" type="button"></button>
+        </div>
+    </form>
+
 </div>
+#end
+
+#define lib()
+<script src="https://cdn.bootcdn.net/ajax/libs/quagga/1.0.0-beta.2/quagga.min.js"></script>
+#end
+
+#define js()
+<script src="/js/index.js?v=#(version)"></script>
 #end
