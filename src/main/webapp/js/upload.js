@@ -2,7 +2,7 @@ $("#form-upload").submit(function (e) {
     e.preventDefault();
     let data = $(this).serializeObject();
     if (!(data.foodname && data.unit && data.calorie && data.protein && data.fat && data.carbohydrate)) {
-        $.error(requireMiss);
+        $.error(resRequireMiss);
         return;
     }
     $.post1("/api/v1/food/upload", data, function (data) {

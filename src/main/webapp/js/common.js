@@ -35,7 +35,7 @@
 
     $.post1 = function (url, data, success) {
         let error = function () {
-            $.error('#(_res.get("networkError"))');
+            $.error(resNetworkError);
         };
         $.ajax({
             type: 'post',
@@ -49,7 +49,7 @@
 
     $.post2 = function (url, form, success) {
         let error = function () {
-            $.error('#(_res.get("networkError"))');
+            $.error(resNetworkError);
         };
         $.ajax({
             type: 'post',
