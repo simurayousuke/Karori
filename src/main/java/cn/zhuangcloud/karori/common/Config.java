@@ -31,6 +31,7 @@ public class Config extends JFinalConfig {
 
     public void configRoute(Routes me) {
         me.add(new FrontRoutes());
+        me.add(new ApiRoutes());
     }
 
     public void configEngine(Engine me) {
