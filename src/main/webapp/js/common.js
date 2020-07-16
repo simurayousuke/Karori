@@ -33,8 +33,21 @@
         });
     };
 
-    $.post2 = function (url, form, success) {
+    $.post1 = function (url, data, success) {
+        let error = function () {
+            $.error('#(_res.get("networkError"))');
+        };
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: data,
+            success: success,
+            error: error
+        });
 
+    };
+
+    $.post2 = function (url, form, success) {
         let error = function () {
             $.error('#(_res.get("networkError"))');
         };
