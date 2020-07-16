@@ -40,7 +40,7 @@ public class Config extends JFinalConfig {
 
     public void configConstant(Constants me) {
         loadConfig();
-//        Start.devMode = p.getBoolean("devMode", false);
+        Start.devMode = p.getBoolean("devMode", false);
         me.setDevMode(Start.devMode);
         me.setInjectDependency(true);
         me.setInjectSuperClass(true);

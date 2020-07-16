@@ -6,16 +6,16 @@ import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
 import com.jfinal.kit.Ret;
 
-public class LoginApi extends ApiV1 {
+public class RegApi extends ApiV1 {
 
     @Inject
     LoginService loginService;
 
     @Clear(NeedLogin.class)
     public void index(String username, String password) {
-        String token = loginService.login(username, password);
+        String token = loginService.reg(username, password);
         if (null == token) {
-            fail(getRes().get("wrongPassword"));
+            fail();
             return;
         }
         setCookie("token", token, 60 * 60 * 24);

@@ -10,21 +10,12 @@ public class RegController extends MyController {
     LoginService loginService;
 
     public void index() {
-        building();
-    }
-
-    public void error() {
-        renderError(500);
-    }
-
-    public void v1(String username, String password) {
-        String token = loginService.reg(username, password);
-        if (null == token) {
-            redirect("/reg/error");
+        if (loginService.isLogin(getCookie("token"))) {
+            redirect("/");
             return;
         }
-        setCookie("token", token, 60 * 60 * 24);
-        redirect("/");
+        title("reg");
+        render("index.html");
     }
 
 }

@@ -17,11 +17,21 @@
                 <label class="input-control-icon-left" for="password"><i class="icon icon-key"></i></label>
             </div>
         </div>
-        <button class="btn btn-block btn-primary" id="login-button" type="submit">#(_res.get("login"))</button>
+        <div class="form-group">
+            <div class="input-control has-icon-left">
+                <input class="form-control" id="confirm" name="confirm" placeholder='#(_res.get("passwordConfirm"))'
+                       type="password">
+                <label class="input-control-icon-left" for="password"><i class="icon icon-key"></i></label>
+            </div>
+        </div>
+        <button class="btn btn-block btn-primary" id="login-button" type="submit">#(_res.get("reg"))</button>
     </form>
 </div>
 #end
 
 #define js()
-<script src="/js/login.js?v=#(version)"></script>
+<script>
+    let resPasswordNotSame = '#(_res.get("passwordNotSame"))';
+</script>
+<script src="/js/reg.js?v=#(version)"></script>
 #end
