@@ -17,4 +17,8 @@ public class ApiV1 extends Controller {
         renderJson(Ret.ok());
     }
 
+    protected <T> T bean(Class<T> beanClass) {
+        return getBean(beanClass, "");
+    }
+
 }
