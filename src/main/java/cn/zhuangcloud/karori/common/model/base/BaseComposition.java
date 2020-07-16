@@ -9,19 +9,12 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseComposition<M extends BaseComposition<M>> extends Model<M> implements IBean {
 
-	public java.lang.Integer getCid() {
-		return getInt("cid");
-	}
-
 	public void setCid(java.lang.Integer cid) {
 		set("cid", cid);
 	}
 
-	/**
-	 * kcal
-	 */
-	public java.lang.Double getCalorie() {
-		return getDouble("calorie");
+	public java.lang.Integer getCid() {
+		return getInt("cid");
 	}
 
 	/**
@@ -32,10 +25,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * g
+	 * kcal
 	 */
-	public java.lang.Double getProtein() {
-		return getDouble("protein");
+	public java.lang.Double getCalorie() {
+		return getDouble("calorie");
 	}
 
 	/**
@@ -48,8 +41,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * g
 	 */
-	public java.lang.Double getFat() {
-		return getDouble("fat");
+	public java.lang.Double getProtein() {
+		return getDouble("protein");
 	}
 
 	/**
@@ -62,8 +55,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * g
 	 */
-	public java.lang.Double getCarbohydrate() {
-		return getDouble("carbohydrate");
+	public java.lang.Double getFat() {
+		return getDouble("fat");
 	}
 
 	/**
@@ -72,12 +65,12 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setCarbohydrate(java.lang.Double carbohydrate) {
 		set("carbohydrate", carbohydrate);
 	}
-
+	
 	/**
-	 * mg
+	 * g
 	 */
-	public java.lang.Double getSodium() {
-		return getDouble("sodium");
+	public java.lang.Double getCarbohydrate() {
+		return getDouble("carbohydrate");
 	}
 
 	/**
@@ -86,12 +79,12 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setSodium(java.lang.Double sodium) {
 		set("sodium", sodium);
 	}
-
+	
 	/**
-	 * g
+	 * mg
 	 */
-	public java.lang.Double getSalt() {
-		return getDouble("salt");
+	public java.lang.Double getSodium() {
+		return getDouble("sodium");
 	}
 
 	/**
@@ -100,12 +93,12 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setSalt(java.lang.Double salt) {
 		set("salt", salt);
 	}
-
+	
 	/**
-	 * mg
+	 * g
 	 */
-	public java.lang.Double getCholesterol() {
-		return getDouble("cholesterol");
+	public java.lang.Double getSalt() {
+		return getDouble("salt");
 	}
 
 	/**
@@ -116,10 +109,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * g
+	 * mg
 	 */
-	public java.lang.Double getSugar() {
-		return getDouble("sugar");
+	public java.lang.Double getCholesterol() {
+		return getDouble("cholesterol");
 	}
 
 	/**
@@ -130,10 +123,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * ug
+	 * g
 	 */
-	public java.lang.Double getVitaminA() {
-		return getDouble("vitaminA");
+	public java.lang.Double getSugar() {
+		return getDouble("sugar");
 	}
 
 	/**
@@ -146,8 +139,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * ug
 	 */
-	public java.lang.Double getVitaminD() {
-		return getDouble("vitaminD");
+	public java.lang.Double getVitaminA() {
+		return getDouble("vitaminA");
 	}
 
 	/**
@@ -158,10 +151,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * mg
+	 * ug
 	 */
-	public java.lang.Double getVitaminE() {
-		return getDouble("vitaminE");
+	public java.lang.Double getVitaminD() {
+		return getDouble("vitaminD");
 	}
 
 	/**
@@ -172,10 +165,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * ug
+	 * mg
 	 */
-	public java.lang.Double getVitaminK() {
-		return getDouble("vitaminK");
+	public java.lang.Double getVitaminE() {
+		return getDouble("vitaminE");
 	}
 
 	/**
@@ -186,10 +179,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * mg
+	 * ug
 	 */
-	public java.lang.Double getVitaminB1() {
-		return getDouble("vitaminB1");
+	public java.lang.Double getVitaminK() {
+		return getDouble("vitaminK");
 	}
 
 	/**
@@ -202,8 +195,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * mg
 	 */
-	public java.lang.Double getVitaminB2() {
-		return getDouble("vitaminB2");
+	public java.lang.Double getVitaminB1() {
+		return getDouble("vitaminB1");
 	}
 
 	/**
@@ -216,8 +209,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * mg
 	 */
-	public java.lang.Double getVitaminB6() {
-		return getDouble("vitaminB6");
+	public java.lang.Double getVitaminB2() {
+		return getDouble("vitaminB2");
 	}
 
 	/**
@@ -228,10 +221,10 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	}
 
 	/**
-	 * ug
+	 * mg
 	 */
-	public java.lang.Double getVitaminB12() {
-		return getDouble("vitaminB12");
+	public java.lang.Double getVitaminB6() {
+		return getDouble("vitaminB6");
 	}
 
 	/**
@@ -240,12 +233,12 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminB12(java.lang.Double vitaminB12) {
 		set("vitaminB12", vitaminB12);
 	}
-
+	
 	/**
-	 * mg
+	 * ug
 	 */
-	public java.lang.Double getVitaminC() {
-		return getDouble("vitaminC");
+	public java.lang.Double getVitaminB12() {
+		return getDouble("vitaminB12");
 	}
 
 	/**
@@ -254,12 +247,12 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminC(java.lang.Double vitaminC) {
 		set("vitaminC", vitaminC);
 	}
-
+	
 	/**
 	 * mg
 	 */
-	public java.lang.Double getCalcium() {
-		return getDouble("calcium");
+	public java.lang.Double getVitaminC() {
+		return getDouble("vitaminC");
 	}
 
 	/**
@@ -272,8 +265,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * mg
 	 */
-	public java.lang.Double getIron() {
-		return getDouble("iron");
+	public java.lang.Double getCalcium() {
+		return getDouble("calcium");
 	}
 
 	/**
@@ -286,8 +279,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * mg
 	 */
-	public java.lang.Double getMagnesium() {
-		return getDouble("magnesium");
+	public java.lang.Double getIron() {
+		return getDouble("iron");
 	}
 
 	/**
@@ -300,8 +293,8 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	/**
 	 * mg
 	 */
-	public java.lang.Double getZinc() {
-		return getDouble("zinc");
+	public java.lang.Double getMagnesium() {
+		return getDouble("magnesium");
 	}
 
 	/**
@@ -310,6 +303,13 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setZinc(java.lang.Double zinc) {
 		set("zinc", zinc);
 	}
+	
+	/**
+	 * mg
+	 */
+	public java.lang.Double getZinc() {
+		return getDouble("zinc");
+	}
 
 	/**
 	 * mg
@@ -317,7 +317,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setPotassium(java.lang.Double potassium) {
 		set("potassium", potassium);
 	}
-
+	
 	/**
 	 * mg
 	 */

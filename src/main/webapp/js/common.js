@@ -59,4 +59,8 @@
 
     };
 
+    $.jump = function (url) {
+        location.href = url;
+    };
+
 })(jQuery);

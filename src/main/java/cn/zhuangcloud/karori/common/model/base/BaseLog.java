@@ -9,66 +9,74 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseLog<M extends BaseLog<M>> extends Model<M> implements IBean {
 
-	public java.lang.Integer getLid() {
-		return getInt("lid");
-	}
+    public void setLid(java.lang.Integer lid) {
+        set("lid", lid);
+    }
 
-	public void setLid(java.lang.Integer lid) {
-		set("lid", lid);
-	}
+    public java.lang.Integer getLid() {
+        return getInt("lid");
+    }
 
-	public java.lang.Integer getUid() {
-		return getInt("uid");
-	}
+    public void setUid(java.lang.Integer uid) {
+        set("uid", uid);
+    }
 
-	public void setUid(java.lang.Integer uid) {
-		set("uid", uid);
-	}
+    public java.lang.Integer getUid() {
+        return getInt("uid");
+    }
 
-	public java.lang.Integer getFid() {
-		return getInt("fid");
-	}
+    public void setFid(java.lang.Integer fid) {
+        set("fid", fid);
+    }
 
-	public void setFid(java.lang.Integer fid) {
-		set("fid", fid);
-	}
+    public java.lang.Integer getFid() {
+        return getInt("fid");
+    }
 
-	public java.util.Date getMealDate() {
-		return get("meal_date");
-	}
+    public void setMealDate(java.util.Date mealDate) {
+        set("meal_date", mealDate);
+    }
 
-	public void setMealDate(java.util.Date mealDate) {
-		set("meal_date", mealDate);
-	}
+    public java.util.Date getMealDate() {
+        return get("meal_date");
+    }
 
-	/**
-	 * 0 default, 1 breakfast, 2 lunch, 3 dinner
-	 */
-	public java.lang.Integer getType() {
-		return getInt("type");
-	}
+    /**
+     * 0 default, 1 breakfast, 2 lunch, 3 dinner
+     */
+    public void setType(java.lang.Integer type) {
+        set("type", type);
+    }
 
-	/**
-	 * 0 default, 1 breakfast, 2 lunch, 3 dinner
-	 */
-	public void setType(java.lang.Integer type) {
-		set("type", type);
-	}
+    /**
+     * 0 default, 1 breakfast, 2 lunch, 3 dinner
+     */
+    public java.lang.Integer getType() {
+        return getInt("type");
+    }
 
-	public java.util.Date getCreateTime() {
-		return get("create_time");
-	}
+    public void setCreateTime(java.util.Date createTime) {
+        set("create_time", createTime);
+    }
 
-	public void setCreateTime(java.util.Date createTime) {
-		set("create_time", createTime);
-	}
+    public java.util.Date getCreateTime() {
+        return get("create_time");
+    }
 
-	public java.util.Date getUpdateTime() {
-		return get("update_time");
-	}
+    public void setUpdateTime(java.util.Date updateTime) {
+        set("update_time", updateTime);
+    }
 
-	public void setUpdateTime(java.util.Date updateTime) {
-		set("update_time", updateTime);
-	}
+    public java.util.Date getUpdateTime() {
+        return get("update_time");
+    }
+
+    public java.lang.Double getWeight() {
+        return getDouble("weight");
+    }
+
+    public void setWeight(java.lang.Double weight) {
+        set("weight", weight);
+    }
 
 }
