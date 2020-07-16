@@ -17,6 +17,10 @@ public class LoginService {
         return ret;
     }
 
+    public User findById(int id) {
+        return dao.findFirst(dao.getSqlPara("user.findById", id));
+    }
+
     private User findByUsername(String username) {
         if (null == username)
             return null;
@@ -24,7 +28,9 @@ public class LoginService {
     }
 
     public User findByToken(String token) {
-        return null == token ? null : Redis.use("user").get(token);
+        User user = (null == token ? null : Redis.use("user").get(token));
+//        return null == user ? null : findById(user.getUid());
+        return user;
     }
 
     private String setAndGetToken(User user) {

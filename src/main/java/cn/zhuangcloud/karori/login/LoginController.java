@@ -5,9 +5,6 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Inject;
 import com.jfinal.core.ActionKey;
 import com.jfinal.ext.interceptor.POST;
-import com.jfinal.i18n.I18n;
-import com.jfinal.i18n.Res;
-import com.jfinal.kit.StrKit;
 
 public class LoginController extends MyController {
 
@@ -19,9 +16,7 @@ public class LoginController extends MyController {
             redirect("/");
             return;
         }
-        String locale = getCookie("_locale");
-        Res res = StrKit.notBlank(locale) ? I18n.use(locale) : I18n.use();
-        title(res.get("login"));
+        title("login");
         render("index.html");
     }
 

@@ -7,6 +7,9 @@ import cn.zhuangcloud.karori.reg.RegController;
 import cn.zhuangcloud.karori.version.VersionController;
 import com.jfinal.config.Routes;
 
+/*
+    403,404,500,logout
+ */
 public class FrontRoutes extends Routes {
     public void config() {
         setBaseViewPath("/view");
@@ -15,6 +18,7 @@ public class FrontRoutes extends Routes {
         add("/login", LoginController.class);
         add("/version", VersionController.class);
         add("/reg", RegController.class);
+        add("/error", ErrorController.class, "common");
 
         //todo
         add("/food", IndexController.class);

@@ -18,7 +18,11 @@ public class ExceptionInterceptor implements Interceptor {
         try {
             inv.invoke();
         } catch (ActionException e) {
-            throw e;
+            int ec = e.getErrorCode();
+            if (ec == 500 || ec == 403 || ec == 404)
+                controller.render("/view/common/" + ec + ".html");
+            else
+                throw e;
         } catch (Exception e) {
             //System.out.println(e.toString());
             LOG.error(e.getMessage(), e);

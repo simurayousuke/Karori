@@ -5,11 +5,13 @@ import cn.zhuangcloud.karori.common.interceptor.StaticInterceptor;
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.i18n.I18nInterceptor;
+import com.jfinal.json.MixedJsonFactory;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
+import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 
 public class Config extends JFinalConfig {
@@ -40,9 +42,13 @@ public class Config extends JFinalConfig {
         Start.devMode = p.getBoolean("devMode", false);
         me.setDevMode(Start.devMode);
         me.setInjectDependency(true);
-        //me.setInjectSuperClass(true);
+        me.setInjectSuperClass(true);
         me.setI18nDefaultBaseName("i18n");
         me.setI18nDefaultLocale("en_US");
+        me.setToSlf4jLogFactory();
+        me.setJsonFactory(new MixedJsonFactory());
+        me.setViewType(ViewType.JFINAL_TEMPLATE);
+        me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }
 
     public void configPlugin(Plugins me) {
@@ -59,9 +65,10 @@ public class Config extends JFinalConfig {
     }
 
     public void configInterceptor(Interceptors me) {
+        me.addGlobalActionInterceptor(new I18nInterceptor());
         me.addGlobalActionInterceptor(new ExceptionInterceptor());
         me.addGlobalActionInterceptor(new StaticInterceptor());
-        me.addGlobalActionInterceptor(new I18nInterceptor());
+
     }
 
     public void configHandler(Handlers me) {
