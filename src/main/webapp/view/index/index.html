@@ -1,12 +1,13 @@
 #@layout()
 #define main()
 <div class="container">
-    #(_res.get("devMode")):#(devMode)<br>
-    #(_res.get("version")):#(version)<br>
     #if(!user)
     #(_res.get("pleaseLogin"))
     #end
-
+    #if(devMode)
+    #(_res.get("devMode")):#(devMode)<br>
+    #(_res.get("version")):#(version)<br>
+    <a href="/upload">upload</a>
     <form>
         <div class="input-field input-group input-control has-label-left" style="width: 250px;">
             <label class="input-control-label-left" for="isbn_input">EAN:</label>
@@ -14,7 +15,7 @@
             <button class="icon-barcode button scan input-control-label-right" type="button"></button>
         </div>
     </form>
-
+    #end
 </div>
 #end
 
