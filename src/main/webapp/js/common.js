@@ -16,21 +16,19 @@
         return o;
     };
 
-    $.ok = function (msg) {
-        $.zui.messager.show(msg, {
-            placement: 'center'
-        });
+    $.ok = function (msg, callback) {
+        $.msg(msg, 'success', callback);
     };
 
-    $.error = function (msg) {
-        $.msg(msg, 'danger');
+    $.error = function (msg, callback) {
+        $.msg(msg, 'danger', callback);
     };
 
-    $.msg = function (msg, type) {
-        $.zui.messager.show(msg, {
+    $.msg = function (msg, type, callback) {
+        new $.zui.Messager({
             placement: 'center',
             type: type
-        });
+        }).show(msg, callback);
     };
 
     $.post1 = function (url, data, success) {

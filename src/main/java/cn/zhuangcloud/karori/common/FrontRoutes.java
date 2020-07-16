@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common;
 
+import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
 import cn.zhuangcloud.karori.food.FoodController;
 import cn.zhuangcloud.karori.index.IndexController;
 import cn.zhuangcloud.karori.log.LogController;
@@ -16,6 +17,7 @@ import com.jfinal.config.Routes;
  */
 public class FrontRoutes extends Routes {
     public void config() {
+        addInterceptor(new ExceptionInterceptor());
         setBaseViewPath("/view");
         add("/", IndexController.class, "index");
         add("/login", LoginController.class);

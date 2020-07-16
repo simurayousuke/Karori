@@ -22,9 +22,7 @@ public class LoginService {
     }
 
     private User findByUsername(String username) {
-        if (null == username)
-            return null;
-        return dao.findFirst(dao.getSqlPara("user.findByUsername", username));
+        return null == username ? null : dao.findFirst(dao.getSqlPara("user.findByUsername", username));
     }
 
     public User findByToken(String token) {

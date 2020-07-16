@@ -1,6 +1,5 @@
 package cn.zhuangcloud.karori.common;
 
-import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
 import cn.zhuangcloud.karori.common.interceptor.StaticInterceptor;
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
@@ -13,6 +12,8 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
+
+import java.sql.Connection;
 
 public class Config extends JFinalConfig {
 
@@ -61,15 +62,14 @@ public class Config extends JFinalConfig {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
         arp.setBaseSqlTemplatePath("/sql");
         arp.addSqlTemplate("all.sql");
+        arp.setTransactionLevel(Connection.TRANSACTION_READ_COMMITTED);
         _MappingKit.mapping(arp);
         me.add(arp);
     }
 
     public void configInterceptor(Interceptors me) {
         me.addGlobalActionInterceptor(new I18nInterceptor());
-        me.addGlobalActionInterceptor(new ExceptionInterceptor());
         me.addGlobalActionInterceptor(new StaticInterceptor());
-
     }
 
     public void configHandler(Handlers me) {

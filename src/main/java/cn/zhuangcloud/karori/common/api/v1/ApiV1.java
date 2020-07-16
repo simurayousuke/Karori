@@ -21,8 +21,16 @@ public class ApiV1 extends Controller {
         renderJson(Ret.fail("msg", msg));
     }
 
+    protected void fail(Ret ret) {
+        renderJson(ret.setFail());
+    }
+
     protected void success() {
         renderJson(Ret.ok());
+    }
+
+    protected void success(String msg) {
+        renderJson(Ret.ok("msg", msg));
     }
 
     protected void success(Ret ret) {

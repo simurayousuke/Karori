@@ -1,14 +1,20 @@
 $("#form-upload").submit(function (e) {
     e.preventDefault();
+    var button = $("#button-upload");
+    button.prop("disabled", true);
     let data = $(this).serializeObject();
     if (!(data.foodname && data.unit && data.calorie && data.protein && data.fat && data.carbohydrate)) {
         $.error(resRequireMiss);
+        button.prop("disabled", false);
         return;
     }
     $.post1("/api/v1/food/upload", data, function (data) {
         if ("ok" === data.state) {
-            $.ok(data.msg);
+            $.ok(data.msg, () => {
+                location.href = "/";
+            });
         } else {
+            button.prop("disabled", false);
             $.error(data.msg);
         }
     });
