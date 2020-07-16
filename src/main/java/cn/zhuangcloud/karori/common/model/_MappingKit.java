@@ -18,6 +18,7 @@ public class _MappingKit {
     public static void mapping(ActiveRecordPlugin arp) {
         arp.addMapping("t_composition", "cid", Composition.class);
         arp.addMapping("t_food", "fid", Food.class);
+        arp.addMapping("t_log", "lid", Log.class);
         arp.addMapping("t_user", "uid", User.class);
     }
 }

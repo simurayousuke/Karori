@@ -1,6 +1,8 @@
 package cn.zhuangcloud.karori.log;
 
 import cn.zhuangcloud.karori.common.MyController;
+import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
+import com.jfinal.aop.Before;
 
 /*
     需要数据表
@@ -16,8 +18,10 @@ public class LogController extends MyController {
                          如果不存在则显示添加按钮，跳转到添加页面-》跳转回选择量
      */
 
+    @Before(NeedLogin.class)
     public void index() {
-        building();
+        title("foodLog");
+        render("index.html");
     }
 
 
