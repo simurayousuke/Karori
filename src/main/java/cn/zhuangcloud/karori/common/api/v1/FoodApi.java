@@ -29,7 +29,7 @@ public class FoodApi extends ApiV1 {
         Food food = bean(Food.class);
         food.setUploader(((User) getAttr("user")).getUid());
         if (foodService.createFood(food, composition))
-            success(res.get("uploadSuccess"));
+            success(Ret.by("msg", res.get("uploadSuccess")).set("fid", food.getFid()));
         else
             fail(Ret.by("code", 500).set("msg", res.get("uploadFail")));
     }

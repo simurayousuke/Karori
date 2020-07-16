@@ -11,7 +11,8 @@ $("#form-upload").submit(function (e) {
     $.post1("/api/v1/food/upload", data, function (data) {
         if ("ok" === data.state) {
             $.ok(data.msg, () => {
-                location.href = "/";
+                //todo relocate
+                location.href = "/api/v1/food/fetch/" + data.fid;
             });
         } else {
             button.prop("disabled", false);
