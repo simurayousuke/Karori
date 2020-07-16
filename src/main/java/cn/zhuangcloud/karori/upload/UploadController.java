@@ -4,8 +4,12 @@ import cn.zhuangcloud.karori.common.MyController;
 
 public class UploadController extends MyController {
 
+    /*
+
+     */
     public void index() {
-        building();
+        title("uploadFood");
+        render("index.html");
     }
 
     public void mine() {

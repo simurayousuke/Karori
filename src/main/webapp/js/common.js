@@ -16,6 +16,12 @@
         return o;
     };
 
+    $.ok = function (msg) {
+        $.zui.messager.show(msg, {
+            placement: 'center'
+        });
+    };
+
     $.error = function (msg) {
         $.msg(msg, 'danger');
     };
