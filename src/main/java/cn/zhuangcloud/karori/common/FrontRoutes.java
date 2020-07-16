@@ -23,7 +23,7 @@ public class FrontRoutes extends Routes {
         add("/reg", RegController.class);
         add("/error", ErrorController.class, "common");
 
-        //todo
+        //todo upload > log > statistic > share > upload mine > food
         add("/food", FoodController.class);
         add("/log", LogController.class);
         add("/statistic", StatisticController.class);

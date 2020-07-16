@@ -8,4 +8,8 @@ public class UploadController extends MyController {
         building();
     }
 
+    public void mine() {
+        building();
+    }
+
 }
