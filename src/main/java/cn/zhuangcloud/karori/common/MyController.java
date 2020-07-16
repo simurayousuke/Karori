@@ -8,4 +8,8 @@ public class MyController extends Controller {
         set("title", title);
     }
 
+    protected void building() {
+        render("/view/common/building.html");
+    }
+
 }

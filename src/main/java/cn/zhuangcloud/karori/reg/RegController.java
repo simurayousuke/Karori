@@ -10,7 +10,7 @@ public class RegController extends MyController {
     LoginService loginService;
 
     public void index() {
-        renderError(404);
+        building();
     }
 
     public void error() {
