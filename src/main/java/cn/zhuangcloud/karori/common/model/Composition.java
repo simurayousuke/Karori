@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 @SuppressWarnings("serial")
 public class Composition extends BaseComposition<Composition> {
 
-    public void calculate(Long unit) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public void calculate(Double unit) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Composition bean = this;
 
         Method[] methods = this.getClass().getMethods();

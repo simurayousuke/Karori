@@ -3,10 +3,10 @@ $('#datagrid-food').datagrid({
         cols: [
             {name: 'ean', label: resEan, width: 120},
             {name: 'foodname', label: resFoodName, width: 200},
-            {name: 'calorie', label: resCalorie, width: 120},
-            {name: 'protein', label: resProtein, width: 120},
-            {name: 'fat', label: resFat, width: 120},
-            {name: 'carbohydrate', label: resCarbohydrate, width: 120},
+            {name: 'calorie', label: resCalorie, width: 120, valueType: 'double'},
+            {name: 'protein', label: resProtein, width: 120, valueType: 'double'},
+            {name: 'fat', label: resFat, width: 120, valueType: 'double'},
+            {name: 'carbohydrate', label: resCarbohydrate, width: 120, valueType: 'double'},
             {name: 'uploader', label: resUploader, width: 120},
             {name: 'fid', label: "fid"},
         ],
@@ -17,6 +17,13 @@ $('#datagrid-food').datagrid({
                 dataType: 'json'
             };
         },
+    },
+    valueOperator: {
+        double: {
+            getter: function (value, cell, dataGrid) {
+                return parseFloat(value.toFixed(4));
+            }
+        }
     },
     onClickCell: function (event, cell, $cell) {
         let fid = datagridFood.getCell(cell.rowIndex, 8).value;

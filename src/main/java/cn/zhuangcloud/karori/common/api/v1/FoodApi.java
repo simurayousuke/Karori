@@ -22,7 +22,7 @@ public class FoodApi extends ApiV1 {
     public void upload() {
         Res res = getRes();
         Composition composition = bean(Composition.class);
-        Long unit = getLong("unit");
+        Double unit = Double.valueOf(get("unit"));
         if (100 != unit) {
             try {
                 composition.calculate(unit);

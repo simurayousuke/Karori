@@ -19,10 +19,10 @@ public class ApiExceptionInterceptor implements Interceptor {
         try {
             inv.invoke();
         } catch (ActionException e) {
-            controller.renderJson(Ret.fail("code", e.getErrorCode()));
+            controller.renderJson(Ret.fail("code", e.getErrorCode()).set("msg", e.getMessage()));
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
-            controller.renderJson(Ret.fail("code", 500));
+            controller.renderJson(Ret.fail("code", 500).set("msg", e.getMessage()));
         }
     }
 }
