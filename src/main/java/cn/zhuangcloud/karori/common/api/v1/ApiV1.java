@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.api.v1;
 
+import cn.zhuangcloud.karori.common.model.User;
 import com.jfinal.core.Controller;
 import com.jfinal.i18n.I18n;
 import com.jfinal.i18n.Res;
@@ -39,6 +40,10 @@ public class ApiV1 extends Controller {
 
     protected <T> T bean(Class<T> beanClass) {
         return getBean(beanClass, "");
+    }
+
+    protected Integer getUid() {
+        return ((User) getAttr("user")).getUid();
     }
 
 }

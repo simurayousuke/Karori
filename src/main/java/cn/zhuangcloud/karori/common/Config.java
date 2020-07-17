@@ -68,6 +68,7 @@ public class Config extends JFinalConfig {
     }
 
     public void configInterceptor(Interceptors me) {
+//        me.addGlobalActionInterceptor(new ExceptionInterceptor());
         me.addGlobalActionInterceptor(new I18nInterceptor());
         me.addGlobalActionInterceptor(new StaticInterceptor());
     }

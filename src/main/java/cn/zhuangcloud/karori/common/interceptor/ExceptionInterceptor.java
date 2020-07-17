@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.interceptor;
 
+import cn.zhuangcloud.karori.common.Start;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.ActionException;
@@ -23,8 +24,9 @@ public class ExceptionInterceptor implements Interceptor {
                 controller.render("/view/common/" + ec + ".html");
             else
                 throw e;
-        } catch (Exception e) {
-            //System.out.println(e.toString());
+        } catch (Throwable e) {
+            if (Start.devMode)
+                System.out.println(e.getMessage());
             LOG.error(e.getMessage(), e);
             controller.renderError(500);
         }

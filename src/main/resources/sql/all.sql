@@ -1,9 +1,9 @@
 #namespace("user")
 #include("user.sql")
 #end
-#namespace("cmp")
-#include("cmp.sql")
-#end
 #namespace("food")
 #include("food.sql")
+#end
+#namespace("statistic")
+#include("statistic.sql")
 #end

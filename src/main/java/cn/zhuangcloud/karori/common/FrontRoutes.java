@@ -24,12 +24,14 @@ public class FrontRoutes extends Routes {
         add("/version", VersionController.class);
         add("/reg", RegController.class);
         add("/error", ErrorController.class, "common");
+        //todo mine modify
+        add("/upload", UploadController.class);
 
-        //todo upload > log > statistic > share > upload mine > food
+        //todo log > statistic > share > upload mine > food
+        //todo search
         add("/food", FoodController.class);
         add("/log", LogController.class);
         add("/statistic", StatisticController.class);
-        add("/upload", UploadController.class);
         add("/share", ShareController.class);
     }
 }
