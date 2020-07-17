@@ -6,7 +6,7 @@
         fat: #(i["fat"]), carbohydrate: #(i["carbohydrate"]),fid:#(i["fid"]??-1)},
     #end
     #end
-    ]
+    ];
 
     let lunchData=[
         #if(_lunch)
@@ -15,7 +15,7 @@
         fat: #(i["fat"]), carbohydrate: #(i["carbohydrate"]),fid:#(i["fid"]??-1)},
     #end
     #end
-    ]
+    ];
 
     let dinnerData=[
         #if(_dinner)
@@ -24,5 +24,5 @@
         fat: #(i["fat"]), carbohydrate: #(i["carbohydrate"]),fid:#(i["fid"]??-1)},
     #end
     #end
-    ]
+    ];
 </script>

@@ -39,6 +39,8 @@ public class Config extends JFinalConfig {
     public void configEngine(Engine me) {
         me.addSharedFunction("/view/common/_layout.html");
         me.addSharedMethod(new SharedMethodLib());
+        //todo functional check
+        me.setCompressorOn(' ');
     }
 
     public void configConstant(Constants me) {
