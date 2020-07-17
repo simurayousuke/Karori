@@ -78,7 +78,7 @@ public class ConvertKit {
                     Double temp = (Double) counter.get(k);
                     if (null == temp)
                         temp = 0.0;
-                    counter.put(k, (Double) temp + (Double) v);
+                    counter.put(k, temp + (Double)v);
                 }
             });
         });
