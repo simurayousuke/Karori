@@ -1,10 +1,10 @@
-let __res = {;
-#for(p;
+let __res = {
+#for(p
 :
-__res;
+__res
 )
-#(p.key);
+#(p.key)
 :
 '#(p.value)',
-    #end;
+    #end
 }
