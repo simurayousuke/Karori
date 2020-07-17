@@ -111,3 +111,5 @@
     };
 
 })(jQuery);
+
+let sensitivity = 0.2;

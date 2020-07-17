@@ -36,7 +36,8 @@ $('#datagrid-food').datagrid({
     },
     states: {
         fixedLeftUntil: 0,
-        fixedTopUntil: 0
+        fixedTopUntil: 0,
+        pager: {page: 1, recPerPage: 10},
     },
     height: 'page',
     showMessage: false
@@ -44,7 +45,6 @@ $('#datagrid-food').datagrid({
 var datagridFood = $('#datagrid-food').data('zui.datagrid');
 var _d = $(".datagrid-container");
 var startX;
-let sensitivity = 0.2;
 
 $("#datagrid-food-main").on("touchstart", function (e) {
     // e.preventDefault();

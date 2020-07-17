@@ -59,10 +59,24 @@ public class FoodApi extends ApiV1 {
     @ActionKey("/api/v1/food/paginate/barcode/zui")
     public void paginateByBarcodeForZuiDatagrid2() {
         String ean = get("search");
-        int index = getInt("page") + 1;
+        int index = getInt("page");
+        if (index < 1)
+            index = 1;
         Integer size = getInt("recPerPage");
 
         Page<Record> page = foodService.paginateByBarcode(index, size, ean);
+        renderJson(ConvertKit.convertPageToZuiDatagridJsonResult(page));
+    }
+
+    @ActionKey("/api/v1/food/paginate/uid/zui")
+    public void paginateByUidForZuiDatagrid2() {
+        Integer uid = ((User) getAttr("user")).getUid();
+        int index = getInt("page");
+        if (index < 1)
+            index = 1;
+        Integer size = getInt("recPerPage");
+
+        Page<Record> page = foodService.paginateByUid(index, size, uid);
         renderJson(ConvertKit.convertPageToZuiDatagridJsonResult(page));
     }
 

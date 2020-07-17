@@ -37,6 +37,10 @@ ORDER BY #para(1) asc;
             return Db.paginate(index, size, Db.getSqlPara("food.paginateAll"));
     }
 
+    public Page<Record> paginateByUid(int index, int size, Integer uid) {
+        return Db.paginate(index, size, Db.getSqlPara("food.paginateByUid", uid));
+    }
+
     public Page<Record> paginateAll(int index, int size) {
         return Db.paginate(index, size, Db.getSqlPara("food.paginateAll"));
     }

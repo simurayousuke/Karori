@@ -16,7 +16,8 @@ public class UploadController extends MyController {
     }
 
     public void mine() {
-        building();
+        title("myUpload");
+        render("mine.html");
     }
 
 }
