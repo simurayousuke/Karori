@@ -7,8 +7,11 @@
     <button class="btn btn-block btn-primary" onclick="$.jump('/log/barcode');" type="button">
         #(_res.get("searchByBarcode"))
     </button>
-    <button class="btn btn-block" onclick="$.jump('/log/foodname');" type="button">#(_res.get("searchByName"))</button>
-    <button class="btn btn-block" onclick="$.jump('/log/mine');" type="button">#(_res.get("searchByMine"))</button>
+    <button class="btn btn-block" disabled="" onclick="$.jump('/log/foodname');" type="button">
+        #(_res.get("searchByName"))
+    </button>
+    <button class="btn btn-block" disabled="" onclick="$.jump('/log/mine');" type="button">#(_res.get("searchByMine"))
+    </button>
 
 </div>
 #end
