@@ -23,6 +23,9 @@
             <!-- 右侧的导航项目 -->
             <ul class="nav navbar-nav navbar-right">
                 #if(user)
+                <li><a href="/log">#(_res.get("foodLog"))</a></li>
+                <li><a href="/upload">#(_res.get("uploadFood"))</a></li>
+                <li><a href="/statistic">#(_res.get("statistic"))</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="/">#(user.username ??
                         _res.get("unknownUser")) <b
