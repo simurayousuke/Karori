@@ -7,7 +7,7 @@ $('#datagrid-food').datagrid({
     dataSource: {
         cols: [
             {name: 'ean', label: resEan, width: 120},
-            {name: 'foodname', label: resFoodName, width: 200},
+            {name: 'foodname', label: resFoodName, width: 250},
             {name: 'calorie', label: resCalorie, width: 120, valueType: 'double'},
             {name: 'protein', label: resProtein, width: 120, valueType: 'double'},
             {name: 'fat', label: resFat, width: 120, valueType: 'double'},
