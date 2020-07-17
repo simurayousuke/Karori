@@ -5,7 +5,8 @@ import cn.zhuangcloud.karori.common.MyController;
 public class FoodController extends MyController {
 
     public void index() {
-        building();
+        title("foodLibrary");
+        render("index.html");
     }
 
 }

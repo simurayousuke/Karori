@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.api.v1;
 
+import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
 import cn.zhuangcloud.karori.common.kit.ConvertKit;
 import cn.zhuangcloud.karori.common.model.Composition;
 import cn.zhuangcloud.karori.common.model.Food;
@@ -44,7 +45,7 @@ public class FoodApi extends ApiV1 {
         renderJson(foodService.unionByFid(getParaToInt()));
     }
 
-
+    @Deprecated
     @ActionKey("/api/v1/food/paginate/barcode/datatables")
     public void paginateByBarcodeForDatatables() {
         String ean = get("search[value]");
@@ -56,6 +57,7 @@ public class FoodApi extends ApiV1 {
         renderJson(ConvertKit.convertPageToDatatablesJsonResult(page));
     }
 
+    @Clear(NeedLogin.class)
     @ActionKey("/api/v1/food/paginate/barcode/zui")
     public void paginateByBarcodeForZuiDatagrid2() {
         String ean = get("search");
