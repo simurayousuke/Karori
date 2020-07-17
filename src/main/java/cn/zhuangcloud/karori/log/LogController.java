@@ -19,6 +19,8 @@ public class LogController extends MyController {
                          如果不存在则显示添加按钮，跳转到添加页面-》跳转回选择量
         search barcode/name/mine -> fid
         date,type,weight -> post
+
+        click cell -> model window -> select/cancel
      */
 
     public void index() {

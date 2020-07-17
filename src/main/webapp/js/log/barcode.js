@@ -1,24 +1,59 @@
-$("#form-upload").submit(function (e) {
+function search() {
+    let ean = $("#input-ean").val();
+    datagridFood.search(ean);
+}
+
+$('#datagrid-food').datagrid({
+    dataSource: {
+        cols: [
+            {name: 'ean', label: resEan, width: 120},
+            {name: 'foodname', label: resFoodName, width: 200},
+            {name: 'calorie', label: resCalorie, width: 120},
+            {name: 'protein', label: resProtein, width: 120},
+            {name: 'fat', label: resFat, width: 120},
+            {name: 'carbohydrate', label: resCarbohydrate, width: 120},
+            {name: 'uploader', label: resUploader, width: 120},
+            {name: 'fid', label: "fid"},
+        ],
+        remote: (params) => {
+            return {
+                url: '/api/v1/food/paginate/barcode/zui',
+                type: 'POST',
+                dataType: 'json'
+            };
+        },
+    },
+    onClickCell: function (event, cell, $cell) {
+        let fid = datagridFood.getCell(cell.rowIndex, 8).value;
+        $.jump("/log/post?fid=" + fid);
+    },
+    configs: {
+        C8: {
+            style: {
+                display: "none",
+            },
+        },
+    },
+    states: {
+        fixedLeftUntil: 0,
+        fixedTopUntil: 0
+    },
+    height: 'page',
+    showMessage: false
+});
+var datagridFood = $('#datagrid-food').data('zui.datagrid');
+var _d = $(".datagrid-container");
+var startX;
+let sensitivity = 0.2;
+
+$("#datagrid-food-main").on("touchstart", function (e) {
+    // e.preventDefault();
+    startX = e.originalEvent.changedTouches[0].pageX;
+});
+$("#datagrid-food-main").on("touchmove", function (e) {
     e.preventDefault();
-    var button = $("#button-upload");
-    button.prop("disabled", true);
-    let data = $(this).serializeObject();
-    if (!(data.foodname && data.unit && data.calorie && data.protein && data.fat && data.carbohydrate)) {
-        $.error(resRequireMiss);
-        button.prop("disabled", false);
-        return;
-    }
-    $.post1("/api/v1/food/upload", data, function (data) {
-        if ("ok" === data.state) {
-            $.ok(data.msg, () => {
-                //todo relocate
-                location.href = "/api/v1/food/fetch/" + data.fid;
-            });
-        } else {
-            button.prop("disabled", false);
-            $.error(data.msg);
-        }
-    }, button);
+    let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
+    _d.scrollLeft(x);
 });
 
 var Quagga = window.Quagga;
@@ -32,6 +67,7 @@ var App = {
             onDetected = function (result) {
                 document.querySelector('#input-ean').value = result.codeResult.code;
                 stop();
+                search();
             }.bind(this),
             stop = function () {
                 scanner.stop();  // should also clear all event-listeners?

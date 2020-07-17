@@ -17,23 +17,70 @@
     };
 
     $.ok = function (msg, callback) {
-        $.msg(msg, 'success', callback);
+        $.msg(msg, "", callback);
     };
 
     $.error = function (msg, callback) {
-        $.msg(msg, 'danger', callback);
+        $.msg(msg, "", callback);
     };
 
+
     $.msg = function (msg, type, callback) {
+        bootbox.alert({
+            size: "small",
+            message: msg,
+            callback: callback
+        });
+    };
+
+    $.tip = function (msg, type, callback) {
         new $.zui.Messager({
             placement: 'center',
             type: type
         }).show(msg, callback);
     };
 
-    $.post1 = function (url, data, success) {
+    $.confirm = function (msg, buttonOK, buttonCancel, callback) {
+        bootbox.confirm({
+            size: "small",
+            message: msg,
+            buttons: {
+                confirm: {
+                    label: buttonOK
+                },
+                cancel: {
+                    label: buttonCancel
+                }
+            },
+            callback: callback
+        });
+    };
+
+    $.prompt = function (title, inputType, callback) {
+        bootbox.prompt({
+            title: title,
+            inputType: inputType,
+            callback: callback
+        });
+    };
+
+    /**
+     * @return {string}
+     */
+    $.getPara = function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) {
+            return decodeURIComponent(r[2]);
+        }
+        return "";
+    };
+
+    $.post1 = function (url, data, success, button) {
         let error = function () {
             $.error(resNetworkError);
+            if (button)
+                button.prop("disabled", false);
         };
         $.ajax({
             type: 'post',

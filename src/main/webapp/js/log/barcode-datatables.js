@@ -1,25 +1,30 @@
-$("#form-upload").submit(function (e) {
-    e.preventDefault();
-    var button = $("#button-upload");
-    button.prop("disabled", true);
-    let data = $(this).serializeObject();
-    if (!(data.foodname && data.unit && data.calorie && data.protein && data.fat && data.carbohydrate)) {
-        $.error(resRequireMiss);
-        button.prop("disabled", false);
-        return;
-    }
-    $.post1("/api/v1/food/upload", data, function (data) {
-        if ("ok" === data.state) {
-            $.ok(data.msg, () => {
-                //todo relocate
-                location.href = "/api/v1/food/fetch/" + data.fid;
-            });
-        } else {
-            button.prop("disabled", false);
-            $.error(data.msg);
-        }
-    }, button);
+function search() {
+    let ean = $("#input-ean").val();
+    datagridFood.search(ean);
+}
+
+$("#input-ean").change(search);
+
+$(document).ready(function () {
+    $('#datagrid-food').DataTable({
+        serverSide: true,
+        responsive: true,
+        ajax: {
+            url: '/api/v1/food/paginate/barcode/datatables',
+            type: 'POST'
+        },
+        columns: [
+            {data: 'ean'},
+            {data: 'foodname'},
+            {data: 'calorie'},
+            {data: 'protein'},
+            {data: 'fat'},
+            {data: 'carbohydrate'},
+            {data: 'uploader'},
+        ]
+    });
 });
+
 
 var Quagga = window.Quagga;
 var App = {
@@ -32,6 +37,7 @@ var App = {
             onDetected = function (result) {
                 document.querySelector('#input-ean').value = result.codeResult.code;
                 stop();
+                search();
             }.bind(this),
             stop = function () {
                 scanner.stop();  // should also clear all event-listeners?
