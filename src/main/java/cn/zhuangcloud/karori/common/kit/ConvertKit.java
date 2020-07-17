@@ -13,7 +13,7 @@ public class ConvertKit {
             return ret;
         }
         ret.set("data", page.getList());
-        Ret pager = Ret.by("page", page.getPageNumber() - 1).set("recTotal", page.getTotalRow()).set("recPerPage", page.getPageSize());
+        Ret pager = Ret.by("page", page.getPageNumber()).set("recTotal", page.getTotalRow()).set("recPerPage", page.getPageSize());
         ret.set("pager", pager);
         return ret;
     }
