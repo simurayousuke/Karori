@@ -1,4 +1,4 @@
-let startX;
+let startX,startY;
 
 let mealStatisticOption = {
     dataSource: {
@@ -42,35 +42,40 @@ $('#datagrid-lunch').datagrid(mealStatisticOption);
 mealStatisticOption.dataSource.array = dinnerData;
 $('#datagrid-dinner').datagrid(mealStatisticOption);
 
-$("#datagrid-container-breakfast").on("touchstart", function (e) {
+function onTouchStart(e){
     startX = e.originalEvent.changedTouches[0].pageX;
-});
+    startY = e.originalEvent.changedTouches[0].pageY;
+}
+
+$("#datagrid-container-breakfast").on("touchstart", onTouchStart);
 
 $("#datagrid-container-breakfast").on("touchmove", function (e) {
     e.preventDefault();
     let _d = $("#datagrid-container-breakfast");
     let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
+    let y=_d.scrollTop() + (startY - e.originalEvent.changedTouches[0].pageY) * sensitivity;
     _d.scrollLeft(x);
+    _d.scrollTop(y);
 });
 
-$("#datagrid-container-lunch").on("touchstart", function (e) {
-    startX = e.originalEvent.changedTouches[0].pageX;
-});
+$("#datagrid-container-lunch").on("touchstart", onTouchStart);
 
 $("#datagrid-container-lunch").on("touchmove", function (e) {
     e.preventDefault();
     let _d = $("#datagrid-container-lunch");
     let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
+    let y=_d.scrollTop() + (startY - e.originalEvent.changedTouches[0].pageY) * sensitivity;
     _d.scrollLeft(x);
+    _d.scrollTop(y);
 });
 
-$("#datagrid-container-dinner").on("touchstart", function (e) {
-    startX = e.originalEvent.changedTouches[0].pageX;
-});
+$("#datagrid-container-dinner").on("touchstart", onTouchStart);
 
 $("#datagrid-container-dinner").on("touchmove", function (e) {
     e.preventDefault();
     let _d = $("#datagrid-container-dinner");
     let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
+    let y=_d.scrollTop() + (startY - e.originalEvent.changedTouches[0].pageY) * sensitivity;
     _d.scrollLeft(x);
+    _d.scrollTop(y);
 });
