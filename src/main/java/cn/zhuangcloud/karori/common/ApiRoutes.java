@@ -1,9 +1,6 @@
 package cn.zhuangcloud.karori.common;
 
-import cn.zhuangcloud.karori.common.api.v1.FoodApi;
-import cn.zhuangcloud.karori.common.api.v1.LogApi;
-import cn.zhuangcloud.karori.common.api.v1.LoginApi;
-import cn.zhuangcloud.karori.common.api.v1.RegApi;
+import cn.zhuangcloud.karori.common.api.v1.*;
 import cn.zhuangcloud.karori.common.interceptor.ApiExceptionInterceptor;
 import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
 import com.jfinal.config.Routes;
@@ -20,6 +17,7 @@ public class ApiRoutes extends Routes {
         add("/api/v1/login", LoginApi.class);
         add("/api/v1/reg", RegApi.class);
         add("/api/v1/log", LogApi.class);
+        add("/api/v1/statistic", StatisticApi.class);
     }
 
 }

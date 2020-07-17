@@ -4,7 +4,9 @@ import com.jfinal.kit.Ret;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ConvertKit {
@@ -58,6 +60,29 @@ public class ConvertKit {
                 ret.remove(k);
 
         });
+        return ret;
+    }
+
+    public static List<Map<String, Object>> getSumForDouble(List<Record> recordList) {
+        if (recordList.size() < 1)
+            return null;
+        Map<String, Object> counter = new HashMap<>();
+        List<Map<String, Object>> ret = new ArrayList<>();
+        recordList.get(0).getColumns().forEach((k, v) -> {
+            counter.put(k, null);
+        });
+        recordList.forEach((record) -> {
+            ret.add(record.getColumns());
+            record.getColumns().forEach((k, v) -> {
+                if (v instanceof Double) {
+                    Double temp = (Double) counter.get(k);
+                    if (null == temp)
+                        temp = 0.0;
+                    counter.put(k, temp + v);
+                }
+            });
+        });
+        ret.add(counter);
         return ret;
     }
 

@@ -2,26 +2,126 @@
 #@layout()
 #define main()
 <div class="container">
-    #(_res.get("devMode")):#(devMode)<br>
-    #(_res.get("version")):#(version)<br>
-    #if(!user)
-    #(_res.get("pleaseLogin"))
-    #end
-
-    <form>
-        <div class="input-field input-group input-control has-label-left" style="width: 250px;">
-            <label class="input-control-label-left" for="isbn_input">EAN:</label>
-            <input class="isbn form-control" id="isbn_input" type="text"/>
-            <button class="icon-barcode button scan input-control-label-right" type="button"></button>
-        </div>
-    </form>
-
+    <div class="datagrid datagrid-striped" id="datagrid-breakfast">
+        <h1>#(_res.get("breakfast"))</h1>
+        <div class="help-block">#(_res.get("unitDisplayNotice"))</div>
+        <div class="datagrid-container" id="datagrid-container-breakfast" style="text-align: center;"></div>
+    </div>
+    <div class="datagrid datagrid-striped" id="datagrid-lunch">
+        <h1>#(_res.get("lunch"))</h1>
+        <div class="help-block">#(_res.get("unitDisplayNotice"))</div>
+        <div class="datagrid-container" id="datagrid-container-lunch" style="text-align: center;"></div>
+    </div>
+    <div class="datagrid datagrid-striped" id="datagrid-dinner">
+        <h1>#(_res.get("dinner"))</h1>
+        <div class="help-block">#(_res.get("unitDisplayNotice"))</div>
+        <div class="datagrid-container" id="datagrid-container-dinner" style="text-align: center;"></div>
+    </div>
 </div>
+<div style="width: 1px;height: 100px"></div>
+#end
+
+#define css()
+<link href="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/datetimepicker/datetimepicker.min.css"
+      rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/datagrid/zui.datagrid.min.css" rel="stylesheet"/>
 #end
 
 #define lib()
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/datetimepicker/datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/datagrid/zui.datagrid.min.js"></script>
 #end
 
 #define js()
+<script>
+    let resFoodName = '#(_res.get("foodname"))';
+    let resCalorie = '#(_res.get("calorie"))';
+    let resProtein = '#(_res.get("protein"))';
+    let resFat = '#(_res.get("fat"))';
+    let resCarbohydrate = '#(_res.get("carbohydrate"))';
+    let resWeight = '#(_res.get("howMany"))';
 
+    let breakfastData = [
+        #if(_breakfast)
+        #for(i;
+    :
+    _breakfast;
+    )
+    {
+        '#(i["foodname"]??_res.get("total"))', weight;
+    :
+        #(i["weight"]), calorie;
+    :
+        #(i["calorie"]), protein;
+    :
+        #(i["protein"]),
+            fat;
+    :
+        #(i["fat"]), carbohydrate;
+    :
+        #(i["carbohydrate"]), fid;
+    :
+        #(i["fid"] ?? -1)
+    }
+    ,
+    #end;
+    #end;
+    ]
+
+    let lunchData = [
+        #if(_lunch)
+        #for(i;
+    :
+    _lunch;
+    )
+    {
+        '#(i["foodname"]??_res.get("total"))', weight;
+    :
+        #(i["weight"]), calorie;
+    :
+        #(i["calorie"]), protein;
+    :
+        #(i["protein"]),
+            fat;
+    :
+        #(i["fat"]), carbohydrate;
+    :
+        #(i["carbohydrate"]), fid;
+    :
+        #(i["fid"] ?? -1)
+    }
+    ,
+    #end;
+    #end;
+    ]
+
+    let dinnerData = [
+        #if(_dinner)
+        #for(i;
+    :
+    _dinner;
+    )
+    {
+        '#(i["foodname"]??_res.get("total"))', weight;
+    :
+        #(i["weight"]), calorie;
+    :
+        #(i["calorie"]), protein;
+    :
+        #(i["protein"]),
+            fat;
+    :
+        #(i["fat"]), carbohydrate;
+    :
+        #(i["carbohydrate"]), fid;
+    :
+        #(i["fid"] ?? -1)
+    }
+    ,
+    #end;
+    #end;
+    ]
+
+</script>
+<script src="/js/statistic.js?v=#(version)"></script>
 #end

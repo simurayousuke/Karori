@@ -1,6 +1,7 @@
 package cn.zhuangcloud.karori.common;
 
 import cn.zhuangcloud.karori.common.interceptor.StaticInterceptor;
+import cn.zhuangcloud.karori.common.kit.SharedMethodLib;
 import cn.zhuangcloud.karori.common.model._MappingKit;
 import com.jfinal.config.*;
 import com.jfinal.i18n.I18nInterceptor;
@@ -37,6 +38,7 @@ public class Config extends JFinalConfig {
 
     public void configEngine(Engine me) {
         me.addSharedFunction("/view/common/_layout.html");
+        me.addSharedMethod(new SharedMethodLib());
     }
 
     public void configConstant(Constants me) {

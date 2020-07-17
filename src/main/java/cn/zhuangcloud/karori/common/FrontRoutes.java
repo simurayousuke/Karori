@@ -26,11 +26,13 @@ public class FrontRoutes extends Routes {
         add("/error", ErrorController.class, "common");
         //todo mine modify
         add("/upload", UploadController.class);
-
-        //todo log > statistic > share > upload mine > food
         //todo search
         add("/food", FoodController.class);
+        //todo more ways
         add("/log", LogController.class);
+        add("/js/res", ResJsController.class, "common");
+
+        //todo log > statistic > share > upload mine > food
         add("/statistic", StatisticController.class);
         add("/share", ShareController.class);
     }
