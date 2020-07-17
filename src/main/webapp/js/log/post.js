@@ -16,7 +16,7 @@ $("#form-log").submit(function (e) {
     button.prop("disabled", true);
     let data = $(this).serializeObject();
     if (!(data.mealDate && data.type && data.weight)) {
-        $.error(resRequireMiss);
+        $.error(__res.requireMiss);
         button.prop("disabled", false);
         return;
     }

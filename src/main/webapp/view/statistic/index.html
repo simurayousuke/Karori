@@ -30,17 +30,11 @@
 #define lib()
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/datetimepicker/datetimepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/datagrid/zui.datagrid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zui/1.9.2/lib/chart/zui.chart.min.js"></script>
 #end
 
 #define js()
 <script>
-    let resFoodName = '#(_res.get("foodname"))';
-    let resCalorie = '#(_res.get("calorie"))';
-    let resProtein = '#(_res.get("protein"))';
-    let resFat = '#(_res.get("fat"))';
-    let resCarbohydrate = '#(_res.get("carbohydrate"))';
-    let resWeight='#(_res.get("howMany"))';
-
     let breakfastData=[
         #if(_breakfast)
         #for(i : _breakfast)

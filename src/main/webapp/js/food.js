@@ -6,13 +6,13 @@ function search() {
 $('#datagrid-food').datagrid({
     dataSource: {
         cols: [
-            {name: 'ean', label: resEan, width: 120},
-            {name: 'foodname', label: resFoodName, width: 250},
-            {name: 'calorie', label: resCalorie, width: 120, valueType: 'double'},
-            {name: 'protein', label: resProtein, width: 120, valueType: 'double'},
-            {name: 'fat', label: resFat, width: 120, valueType: 'double'},
-            {name: 'carbohydrate', label: resCarbohydrate, width: 120, valueType: 'double'},
-            {name: 'uploader', label: resUploader, width: 120},
+            {name: 'ean', label: __res.ean, width: 120},
+            {name: 'foodname', label: __res.foodname, width: 250},
+            {name: 'calorie', label: __res.calorie, width: 120, valueType: 'double'},
+            {name: 'protein', label: __res.protein, width: 120, valueType: 'double'},
+            {name: 'fat', label: __res.fat, width: 120, valueType: 'double'},
+            {name: 'carbohydrate', label: __res.carbohydrate, width: 120, valueType: 'double'},
+            {name: 'uploader', label: __res.uploader, width: 120},
             {name: 'fid', label: "fid"},
         ],
         remote: (params) => {

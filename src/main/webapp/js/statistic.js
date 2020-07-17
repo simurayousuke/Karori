@@ -3,12 +3,12 @@ let startX;
 let mealStatisticOption = {
     dataSource: {
         cols: [
-            {name: 'foodname', label: resFoodName, width: 250},
+            {name: 'foodname', label: __res.foodname, width: 250},
             //{name: 'weight', label: resWeight, width: 120, valueType: 'double'},
-            {name: 'calorie', label: resCalorie, width: 120, valueType: 'double'},
-            {name: 'protein', label: resProtein, width: 120, valueType: 'double'},
-            {name: 'fat', label: resFat, width: 120, valueType: 'double'},
-            {name: 'carbohydrate', label: resCarbohydrate, width: 120, valueType: 'double'},
+            {name: 'calorie', label: __res.calorie, width: 120, valueType: 'double'},
+            {name: 'protein', label: __res.protein, width: 120, valueType: 'double'},
+            {name: 'fat', label: __res.fat, width: 120, valueType: 'double'},
+            {name: 'carbohydrate', label: __res.carbohydrate, width: 120, valueType: 'double'},
             {name: 'fid', label: "fid"},
         ],
         array: breakfastData

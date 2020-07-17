@@ -78,7 +78,7 @@
 
     $.post1 = function (url, data, success, button) {
         let error = function () {
-            $.error(resNetworkError);
+            $.error(__res.networkError);
             if (button)
                 button.prop("disabled", false);
         };
@@ -94,7 +94,7 @@
 
     $.post2 = function (url, form, success) {
         let error = function () {
-            $.error(resNetworkError);
+            $.error(__res.networkError);
         };
         $.ajax({
             type: 'post',

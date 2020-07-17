@@ -4,7 +4,7 @@ $("#form-upload").submit(function (e) {
     button.prop("disabled", true);
     let data = $(this).serializeObject();
     if (!(data.foodname && data.unit && data.calorie && data.protein && data.fat && data.carbohydrate)) {
-        $.error(resRequireMiss);
+        $.error(__res.requireMiss);
         button.prop("disabled", false);
         return;
     }

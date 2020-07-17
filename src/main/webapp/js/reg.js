@@ -2,11 +2,11 @@ $("#form-login").submit(function (e) {
     e.preventDefault();
     let data = $(this).serializeObject();
     if (!(data.username && data.password && data.confirm)) {
-        $.error(resRequireMiss);
+        $.error(__res.requireMiss);
         return;
     }
     if (data.password !== data.confirm) {
-        $.error(resPasswordNotSame);
+        $.error(__res.passwordNotSame);
         return;
     }
     $.post1("/api/v1/reg", data, function (data) {
