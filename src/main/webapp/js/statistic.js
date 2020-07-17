@@ -1,6 +1,6 @@
-var startX;
+let startX;
 
-var mealStatisticOption = {
+let mealStatisticOption = {
     dataSource: {
         cols: [
             {name: 'foodname', label: resFoodName, width: 250},
@@ -42,14 +42,35 @@ $('#datagrid-lunch').datagrid(mealStatisticOption);
 mealStatisticOption.dataSource.array = dinnerData;
 $('#datagrid-dinner').datagrid(mealStatisticOption);
 
-$(".datagrid-container").on("touchstart", function (e) {
+$("#datagrid-container-breakfast").on("touchstart", function (e) {
     startX = e.originalEvent.changedTouches[0].pageX;
 });
 
-$(".datagrid-container").on("touchmove", function (e) {
+$("#datagrid-container-breakfast").on("touchmove", function (e) {
     e.preventDefault();
-    //todo check functional
-    let _d = this;
+    let _d = $("#datagrid-container-breakfast");
+    let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
+    _d.scrollLeft(x);
+});
+
+$("#datagrid-container-lunch").on("touchstart", function (e) {
+    startX = e.originalEvent.changedTouches[0].pageX;
+});
+
+$("#datagrid-container-lunch").on("touchmove", function (e) {
+    e.preventDefault();
+    let _d = $("#datagrid-container-lunch");
+    let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
+    _d.scrollLeft(x);
+});
+
+$("#datagrid-container-dinner").on("touchstart", function (e) {
+    startX = e.originalEvent.changedTouches[0].pageX;
+});
+
+$("#datagrid-container-dinner").on("touchmove", function (e) {
+    e.preventDefault();
+    let _d = $("#datagrid-container-dinner");
     let x = _d.scrollLeft() + (startX - e.originalEvent.changedTouches[0].pageX) * sensitivity;
     _d.scrollLeft(x);
 });

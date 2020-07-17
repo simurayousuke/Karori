@@ -23,7 +23,7 @@ $("#form-log").submit(function (e) {
     $.post1("/api/v1/log", data, function (data) {
         if ("ok" === data.state) {
             $.ok(data.msg, () => {
-                $.jump("/statistic");
+                $.jump("/statistic/" + $("#input-mealDate").val());
             });
         } else {
             button.prop("disabled", false);
