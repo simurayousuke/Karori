@@ -1,6 +1,6 @@
 let sensitivity = 0.2;
 let __cmpKeys = ["calorie", "protein", "fat", "carbohydrate", "sodium", "salt", "cholesterol", "sugar", "vitaminA", "vitaminD", "vitaminE", "vitaminK", "vitaminB1", "vitaminB2", "vitaminB6", "vitaminB12", "vitaminC", "calcium", "iron", "magnesium", "zinc", "potassium"];
-let __frictionDigits=2;
+let __frictionDigits = 2;
 
 (function ($) {
 
@@ -155,6 +155,11 @@ let __frictionDigits=2;
         location.href = url;
     };
 
+    $.sleep = function (d) {
+        for (let t = Date.now(); Date.now() - t <= d;) {
+        }
+    };
+
     $.formatDate = function (date) {
         let dd = date.getDate();
         let mm = date.getMonth() + 1; //January is 0!
@@ -171,3 +176,15 @@ let __frictionDigits=2;
 
 })(jQuery);
 
+const ptr = PullToRefresh.init({
+    mainElement: 'body',
+    distThreshold: 150,
+    distMax: 200,
+    instructionsPullToRefresh: __res.hereNothing,
+    instructionsReleaseToRefresh: __res.reallyNothing,
+    instructionsRefreshing: __res.seeNothing,
+    onRefresh() {
+        console.log("Thanks for finding me ~");
+        $.sleep(3000);
+    }
+});
