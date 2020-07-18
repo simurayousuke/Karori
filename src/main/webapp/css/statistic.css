@@ -1,0 +1,13 @@
+.chart-title{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.my-chart{
+    width: 400px;
+    float: left;
+    margin: 30px;
+    border: solid thin darkgray;
+    padding: 20px;
+    margin-left: 0 !important;
+}

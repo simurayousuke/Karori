@@ -1,3 +1,5 @@
+let sensitivity = 0.2;
+let __cmpKeys = ["calorie", "protein", "fat", "carbohydrate", "sodium", "salt", "cholesterol", "sugar", "vitaminA", "vitaminD", "vitaminE", "vitaminK", "vitaminB1", "vitaminB2", "vitaminB6", "vitaminB12", "vitaminC", "calcium", "iron", "magnesium", "zinc", "potassium"];
 (function ($) {
 
     $.fn.serializeObject = function () {
@@ -77,24 +79,28 @@
     };
 
     $.addSumRow = function (data) {
-        let sum={};
-        for(let k in data[0]){
-            sum[k]=0;
-        }
-        sum.foodname=__res.total;
-        data.forEach((row,index)=>{
-            for(let k in row){
-                if(null===row[k]){
-                    row[k]=0;
-                }else if("number"===typeof row[k]){
-                    sum[k]+=row[k];
+        let sum = {};
+        __cmpKeys.forEach((key) => {
+            sum[key] = 0;
+        });
+        sum.foodname = __res.total;
+        data.forEach((row) => {
+            for (let k in row) {
+                if (null === row[k]) {
+                    row[k] = 0;
+                } else if ("number" === typeof row[k]) {
+                    sum[k] += row[k];
                 }
             }
         });
-        sum.fid=0;
-        sum.weight=0;
-        sum.type=0;
-        data.push(sum);
+        sum.fid = 0;
+        sum.weight = 0;
+        sum.type = 0;
+        if (data) {
+            data.push(sum);
+        } else {
+            data = [sum];
+        }
         return data;
     };
 
@@ -163,4 +169,3 @@
 
 })(jQuery);
 
-let sensitivity = 0.2;

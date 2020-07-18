@@ -1,8 +1,9 @@
 let startX, startY;
-let breakfastData=[],lunchData=[],dinnerData=[];
-let breakfastSum=[],lunchSum=[],dinnerSum=[];
-let daySum=[];
-let __sync=0;
+let breakfastData = [], lunchData = [], dinnerData = [];
+let breakfastSum = [], lunchSum = [], dinnerSum = [];
+let daySum = [];
+let __sync = 0;
+let chartThreeMeal;
 
 function getDate() {
     let reg = new RegExp("/[0-9]{4}-[0-9]{2}-[0-9]{2}$");
@@ -14,8 +15,8 @@ function getDate() {
     }
 }
 
-let dateStatistic=getDate();
-let inputDate=$("#input-date-statistic");
+let dateStatistic = getDate();
+let inputDate = $("#input-date-statistic");
 
 inputDate.val(dateStatistic);
 
@@ -30,11 +31,10 @@ $("#input-date-statistic").datetimepicker(
         forceParse: 0,
         format: "yyyy-mm-dd",
         initialDate: dateStatistic,
-        language:_locale.substring(0,2)
+        language: _locale.substring(0, 2)
     }).on('changeDate', function (ev) {
     $.jump("/statistic/" + inputDate.val());
 });
-
 
 
 function initDatagrid() {
@@ -43,10 +43,10 @@ function initDatagrid() {
             cols: [
                 {name: 'foodname', label: __res.foodname, width: 250},
                 //{name: 'weight', label: resWeight, width: 120, valueType: 'double'},
-                {name: 'calorie', label: __res.calorie+"(kcal)", width: 120, valueType: 'double'},
-                {name: 'protein', label: __res.protein+"(g)", width: 120, valueType: 'double'},
-                {name: 'fat', label: __res.fat+"(g)", width: 120, valueType: 'double'},
-                {name: 'carbohydrate', label: __res.carbohydrate+"(g)", width: 120, valueType: 'double'},
+                {name: 'calorie', label: __res.calorie + "(kcal)", width: 120, valueType: 'double'},
+                {name: 'protein', label: __res.protein + "(g)", width: 120, valueType: 'double'},
+                {name: 'fat', label: __res.fat + "(g)", width: 120, valueType: 'double'},
+                {name: 'carbohydrate', label: __res.carbohydrate + "(g)", width: 120, valueType: 'double'},
                 {name: 'fid', label: "fid"},
             ],
             array: breakfastData
@@ -120,45 +120,83 @@ function initDatagrid() {
 }
 
 function getSumRow(data) {
-    return data[data.length-1];
+    return data[data.length - 1];
 }
 
-function getDaySum(bs,ls,ds) {
-    let sum={};
-    for(let k in bs){
-        if("number"===typeof bs[k]){
-            sum[k]=bs[k];
+function getDaySum(bs, ls, ds) {
+    let sum = {};
+    for (let k in bs) {
+        if ("number" === typeof bs[k]) {
+            sum[k] = bs[k];
         }
     }
-    for(let k in ls){
-        if("number"===typeof ls[k]){
-            sum[k]+=ls[k];
+    for (let k in ls) {
+        if ("number" === typeof ls[k]) {
+            sum[k] += ls[k];
         }
     }
-    for(let k in ds){
-        if("number"===typeof ds[k]){
-            sum[k]+=ds[k];
+    for (let k in ds) {
+        if ("number" === typeof ds[k]) {
+            sum[k] += ds[k];
         }
     }
-    sum.foodname=__res.total;
+    sum.foodname = __res.total;
     return sum;
 }
 
-function initData(){
-    function _callback(data){
+
+function initChart() {
+    var data = [{
+        value: breakfastSum.calorie,
+        color: "#90d7ec",
+        label: __res.breakfast
+    }, {
+        value: lunchSum.calorie,
+        color: "#009ad6",
+        label: __res.lunch
+    }, {
+        value: dinnerSum.calorie,
+        color: "#145b7d",
+        label: __res.dinner
+    }];
+    let options = __defaultChartConfig;
+    options.scaleShowLabels=true;
+    options.scaleLabel="<%=label%>: <%= (value/daySum.calorie).toFixed(2)*100 %>%";
+    options.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
+    options.scaleLabelPlacement="outside";
+    chartThreeMeal = $("#chart-threeMeal").pieChart(data, options);
+    $("#chart-title-threeMeal").text(__res.threeMealTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
+}
+
+function initData() {
+    function _callback(data) {
         $.addSumRow(data);
-        if(++__sync>2){
+        if (++__sync > 2) {
             initDatagrid();
-            breakfastSum=getSumRow(breakfastData);
-            lunchSum=getSumRow(lunchData);
-            dinnerSum=getSumRow(dinnerData);
-            daySum=getDaySum(breakfastSum,lunchSum,dinnerSum);
+            breakfastSum = getSumRow(breakfastData);
+            lunchSum = getSumRow(lunchData);
+            dinnerSum = getSumRow(dinnerData);
+            daySum = getDaySum(breakfastSum, lunchSum, dinnerSum);
+            initChart();
             $("#main-statistic").removeClass("loading");
         }
     }
-    $.post3("/api/v1/statistic/dateAndType",{date:dateStatistic,type:1},(data)=>{breakfastData=data},()=>{_callback(breakfastData)});
-    $.post3("/api/v1/statistic/dateAndType",{date:dateStatistic,type:2},(data)=>{lunchData=data},()=>{_callback(lunchData)});
-    $.post3("/api/v1/statistic/dateAndType",{date:dateStatistic,type:3},(data)=>{dinnerData=data},()=>{_callback(dinnerData)});
+
+    $.post3("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 1}, (data) => {
+        breakfastData = data
+    }, () => {
+        _callback(breakfastData)
+    });
+    $.post3("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 2}, (data) => {
+        lunchData = data
+    }, () => {
+        _callback(lunchData)
+    });
+    $.post3("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 3}, (data) => {
+        dinnerData = data
+    }, () => {
+        _callback(dinnerData)
+    });
 }
 
 $(document).ready(function () {
