@@ -49,7 +49,7 @@ public class Config extends JFinalConfig {
         me.setInjectDependency(true);
         me.setInjectSuperClass(true);
         me.setI18nDefaultBaseName("i18n");
-        me.setI18nDefaultLocale("en_US");
+        me.setI18nDefaultLocale("zh_CN");
         me.setToSlf4jLogFactory();
         me.setJsonFactory(new MixedJsonFactory());
         me.setViewType(ViewType.JFINAL_TEMPLATE);
