@@ -4,6 +4,7 @@ let breakfastSum = [], lunchSum = [], dinnerSum = [];
 let daySum = [];
 let __sync = 0;
 let chartThreeMeal;
+let _totalCalculated;
 
 function getDate() {
     let reg = new RegExp("/[0-9]{4}-[0-9]{2}-[0-9]{2}$");
@@ -54,7 +55,7 @@ function initDatagrid() {
         valueOperator: {
             double: {
                 getter: function (value, cell, dataGrid) {
-                    return parseFloat(value.toFixed(2));
+                    return parseFloat(value.toFixed(__frictionDigits));
                 }
             }
         },
@@ -146,7 +147,7 @@ function getDaySum(bs, ls, ds) {
 
 
 function initChart() {
-    var data = [{
+    let threeMealChartData = [{
         value: breakfastSum.calorie,
         color: "#90d7ec",
         label: __res.breakfast
@@ -159,13 +160,34 @@ function initChart() {
         color: "#145b7d",
         label: __res.dinner
     }];
-    let options = __defaultChartConfig;
-    options.scaleShowLabels=true;
-    options.scaleLabel="<%=label%>: <%= (value/daySum.calorie).toFixed(2)*100 %>%";
-    options.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
-    options.scaleLabelPlacement="outside";
-    chartThreeMeal = $("#chart-threeMeal").pieChart(data, options);
+    let threeMealOptions = __defaultChartConfig;
+    threeMealOptions.scaleShowLabels=true;
+    threeMealOptions.scaleLabel="<%=label%>: <%= (value/daySum.calorie).toFixed(2)*100 %>%";
+    threeMealOptions.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
+    threeMealOptions.scaleLabelPlacement="outside";
+    chartThreeMeal = $("#chart-threeMeal").pieChart(threeMealChartData, threeMealOptions);
     $("#chart-title-threeMeal").text(__res.threeMealTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
+
+    let threeEnergyChartData = [{
+        value: daySum.protein*4,
+        color: "#fab27b",
+        label: __res.protein
+    }, {
+        value: daySum.fat*9,
+        color: "#f58220",
+        label: __res.fat
+    }, {
+        value: daySum.carbohydrate*4,
+        color: "#faa755",
+        label: __res.carbohydrate
+    }];
+    let threeEnergyOptions = __defaultChartConfig;
+    threeEnergyOptions.scaleShowLabels=true;
+    threeEnergyOptions.scaleLabel="<%=label%>: <%= (value/_totalCalculated).toFixed(2)*100 %>%";
+    threeEnergyOptions.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
+    threeEnergyOptions.scaleLabelPlacement="outside";
+    chartThreeMeal = $("#chart-threeEnergy").pieChart(threeEnergyChartData, threeEnergyOptions);
+    $("#chart-title-threeEnergy").text(__res.threeEnergyTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
 }
 
 function initData() {
@@ -177,6 +199,7 @@ function initData() {
             lunchSum = getSumRow(lunchData);
             dinnerSum = getSumRow(dinnerData);
             daySum = getDaySum(breakfastSum, lunchSum, dinnerSum);
+            _totalCalculated=daySum.protein*4+daySum.fat*9+daySum.carbohydrate*4;
             initChart();
             $("#main-statistic").removeClass("loading");
         }

@@ -1,5 +1,7 @@
 let sensitivity = 0.2;
 let __cmpKeys = ["calorie", "protein", "fat", "carbohydrate", "sodium", "salt", "cholesterol", "sugar", "vitaminA", "vitaminD", "vitaminE", "vitaminK", "vitaminB1", "vitaminB2", "vitaminB6", "vitaminB12", "vitaminC", "calcium", "iron", "magnesium", "zinc", "potassium"];
+let __frictionDigits=2;
+
 (function ($) {
 
     $.fn.serializeObject = function () {
@@ -89,7 +91,7 @@ let __cmpKeys = ["calorie", "protein", "fat", "carbohydrate", "sodium", "salt", 
                 if (null === row[k]) {
                     row[k] = 0;
                 } else if ("number" === typeof row[k]) {
-                    sum[k] += row[k];
+                    sum[k] += parseFloat(row[k].toFixed(__frictionDigits));
                 }
             }
         });

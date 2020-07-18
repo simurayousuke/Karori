@@ -26,7 +26,7 @@ $('#datagrid-food').datagrid({
     valueOperator: {
         double: {
             getter: function (value, cell, dataGrid) {
-                return parseFloat(value.toFixed(4));
+                return parseFloat(value.toFixed(__frictionDigits));
             }
         }
     },
