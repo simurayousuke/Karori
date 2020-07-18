@@ -1,3 +1,6 @@
+let defaultMealDate=$.formatDate(new Date());
+$("#input-mealDate").val(defaultMealDate);
+
 $(".form-date").datetimepicker(
     {
         weekStart: 1,
@@ -7,7 +10,9 @@ $(".form-date").datetimepicker(
         startView: 2,
         minView: 2,
         forceParse: 0,
-        format: "yyyy-mm-dd"
+        format: "yyyy-mm-dd",
+        initialDate:defaultMealDate,
+        language:_locale.substring(0,2)
     });
 
 $("#form-log").submit(function (e) {

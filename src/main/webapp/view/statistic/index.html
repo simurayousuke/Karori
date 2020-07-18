@@ -1,22 +1,26 @@
 #set(title=_res.get(title))
 #@layout()
 #define main()
-<div class="container">
+<div class="container load-indicator loading" id="main-statistic">
+    <div class="form-group">
+        <label for="input-date-statistic"><h1>#(_res.get("date"))</h1></label>
+        <input class="form-control form-date" id="input-date-statistic" readonly="" type="text" value="">
+        <div class="help-block">#(_res.get("pickDateNotice"))</div>
+    </div>
+
     <div class="datagrid datagrid-striped" id="datagrid-breakfast">
         <h1>#(_res.get("breakfast"))</h1>
-        <div class="help-block">#(_res.get("unitDisplayNotice"))</div>
         <div class="datagrid-container" id="datagrid-container-breakfast" style="text-align: center;"></div>
     </div>
     <div class="datagrid datagrid-striped" id="datagrid-lunch">
         <h1>#(_res.get("lunch"))</h1>
-        <div class="help-block">#(_res.get("unitDisplayNotice"))</div>
         <div class="datagrid-container" id="datagrid-container-lunch" style="text-align: center;"></div>
     </div>
     <div class="datagrid datagrid-striped" id="datagrid-dinner">
         <h1>#(_res.get("dinner"))</h1>
-        <div class="help-block">#(_res.get("unitDisplayNotice"))</div>
         <div class="datagrid-container" id="datagrid-container-dinner" style="text-align: center;"></div>
     </div>
+    三餐饼图，三大营养素饼图
 </div>
 <div style="width: 1px;height: 100px"></div>
 #end
@@ -34,6 +38,6 @@
 #end
 
 #define js()
-#include("index-inline.js")
+
 <script src="/js/statistic.js?#(_generateUuid())"></script>
 #end

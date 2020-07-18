@@ -67,13 +67,35 @@
     /**
      * @return {string}
      */
-    $.getPara = function GetQueryString(name) {
+    $.getPara = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
         if (r !== null) {
             return decodeURIComponent(r[2]);
         }
         return "";
+    };
+
+    $.addSumRow = function (data) {
+        let sum={};
+        for(let k in data[0]){
+            sum[k]=0;
+        }
+        sum.foodname=__res.total;
+        data.forEach((row,index)=>{
+            for(let k in row){
+                if(null===row[k]){
+                    row[k]=0;
+                }else if("number"===typeof row[k]){
+                    sum[k]+=row[k];
+                }
+            }
+        });
+        sum.fid=0;
+        sum.weight=0;
+        sum.type=0;
+        data.push(sum);
+        return data;
     };
 
     $.post1 = function (url, data, success, button) {
@@ -106,9 +128,38 @@
 
     };
 
+    $.post3 = function (url, data, success, complete) {
+        let error = function () {
+            $.error(__res.networkError);
+        };
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: data,
+            success: success,
+            error: error,
+            complete: complete
+        });
+
+    };
+
     $.jump = function (url) {
         location.href = url;
     };
+
+    $.formatDate = function (date) {
+        let dd = date.getDate();
+        let mm = date.getMonth() + 1; //January is 0!
+        let yyyy = date.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        return yyyy + '-' + mm + '-' + dd;
+
+    }
 
 })(jQuery);
 

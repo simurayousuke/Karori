@@ -17,6 +17,7 @@ public class ResJsController extends MyController {
             __res.put(key, _res.get(key));
         }
         set("__res", __res);
+        set("__locale", getCookie("_locale","en_US"));
         render("res.js");
     }
 
