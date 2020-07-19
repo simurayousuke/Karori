@@ -18,9 +18,13 @@ public class ShareService {
     }
 
     public boolean check(String token, Date date) {
+        Share share = getByToken(token);
+        return check(share,date);
+    }
+
+    public boolean check(Share share, Date date) {
         if (null == date)
             return false;
-        Share share = getByToken(token);
         if (null == share)
             return false;
         switch (share.getType()) {

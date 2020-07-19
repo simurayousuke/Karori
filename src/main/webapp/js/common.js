@@ -91,7 +91,7 @@ let __frictionDigits = 2;
                 if (null === row[k]) {
                     row[k] = 0;
                 } else if ("number" === typeof row[k]) {
-                    sum[k] += parseFloat(row[k].toFixed(__frictionDigits));
+                    sum[k] += $.formatNum(row[k]);
                 }
             }
         });
@@ -170,6 +170,13 @@ let __frictionDigits = 2;
     $.sleep = function (d) {
         for (let t = Date.now(); Date.now() - t <= d;) {
         }
+    };
+
+    $.formatNum=function(num){
+        if(!num) {
+            return 0;
+        }
+        return parseFloat(num.toFixed(__frictionDigits));
     };
 
     $.buildShareLink = function (token, date, locale) {

@@ -36,3 +36,25 @@ a:focus {
 #button-scan{
     cursor: pointer;
 }
+
+.container-form-mine{
+    width: 300px;
+    border:solid thin darkgrey;
+    padding: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.chart-title{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.my-chart{
+    width: 430px;
+    float: left;
+    margin: 30px;
+    border: solid thin darkgray;
+    padding: 20px;
+    margin-left: 0 !important;
+}

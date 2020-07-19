@@ -10,3 +10,6 @@
 #namespace("share")
 #include("share.sql")
 #end
+#namespace("target")
+#include("target.sql")
+#end

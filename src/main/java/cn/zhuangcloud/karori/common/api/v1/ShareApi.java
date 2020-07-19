@@ -14,6 +14,7 @@ import com.jfinal.i18n.Res;
 import com.jfinal.kit.Ret;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class ShareApi extends ApiV1 {
 
@@ -33,8 +34,9 @@ public class ShareApi extends ApiV1 {
     @Clear(NeedLogin.class)
     public void check() {
         String token = get("token");
+        Share share = shareService.getByToken(token);
         Date date = getDate("date");
-        renderJson(Ret.by("access", shareService.check(token, date)));
+        renderJson(Ret.by("access", shareService.check(share, date)).set("type", Objects.requireNonNull(share,"illegal token").getType()));
     }
 
     @Before(ShareApiValidator.class)

@@ -121,6 +121,26 @@ create index t_share_uid_index
     on t_share (uid);
 
 
+drop table if exists t_target;
+create table t_target
+(
+    tid int auto_increment,
+    uid int not null,
+    target_calorie int default 0 not null,
+    target_protein int default 0 not null,
+    target_fat int default 0 not null,
+    target_carbohydrate int default 0 not null,
+    create_time datetime default current_timestamp not null,
+    update_time datetime default current_timestamp on update current_timestamp not null,
+    constraint t_target_pk
+        primary key (tid),
+    constraint t_target_t_user_uid_fk
+        foreign key (uid) references t_user (uid)
+);
+
+create unique index t_target_uid_uindex
+    on t_target (uid);
+
 
 
 SET FOREIGN_KEY_CHECKS = 'ON';

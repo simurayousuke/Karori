@@ -10,6 +10,7 @@ import cn.zhuangcloud.karori.login.LoginController;
 import cn.zhuangcloud.karori.reg.RegController;
 import cn.zhuangcloud.karori.share.ShareController;
 import cn.zhuangcloud.karori.statistic.StatisticController;
+import cn.zhuangcloud.karori.target.TargetController;
 import cn.zhuangcloud.karori.upload.UploadController;
 import cn.zhuangcloud.karori.version.VersionController;
 import com.jfinal.config.Routes;
@@ -37,5 +38,7 @@ public class FrontRoutes extends Routes {
         //todo log > statistic > share > upload mine > food
         add("/statistic", StatisticController.class);
         add("/share", ShareController.class);
+
+        add("/target", TargetController.class);
     }
 }
