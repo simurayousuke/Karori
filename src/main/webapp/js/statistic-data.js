@@ -4,7 +4,7 @@ let daySum = [];
 let __sync = 0;
 let _totalCalculated;
 let _targetValues = {};
-let _baseMealDataUrl="/api/v1";
+let _baseMealDataUrl = "/api/v1";
 let shareToken = $.getPara("token");
 
 function getDate() {
@@ -19,6 +19,7 @@ function getDate() {
     }
     return $.formatDate(new Date());
 }
+
 let dateStatistic = getDate();
 
 function getSumRow(data) {
@@ -62,7 +63,7 @@ function _callback(data) {
 }
 
 function initBreakfastData() {
-    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 1,token:shareToken}, (data) => {
+    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 1, token: shareToken}, (data) => {
         breakfastData = data;
         _callback(breakfastData);
     }, () => {
@@ -73,7 +74,7 @@ function initBreakfastData() {
 }
 
 function initLunchData() {
-    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 2,token:shareToken}, (data) => {
+    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 2, token: shareToken}, (data) => {
         lunchData = data;
         _callback(lunchData);
     }, () => {
@@ -84,7 +85,7 @@ function initLunchData() {
 }
 
 function initDinnerData() {
-    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 3,token:shareToken}, (data) => {
+    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 3, token: shareToken}, (data) => {
         dinnerData = data;
         _callback(dinnerData);
     }, () => {
@@ -95,7 +96,7 @@ function initDinnerData() {
 }
 
 function initTargetData() {
-    $.post4("/api/v1/target/fetch", {token:shareToken}, (data) => {
+    $.post4("/api/v1/target/fetch", {token: shareToken}, (data) => {
         _targetValues = data;
         _callback(null);
     }, () => {
@@ -106,10 +107,11 @@ function initTargetData() {
 }
 
 function initData() {
-    if(location.href.startsWith("https://www.zhuangcloud.cn/share?")){
-        _baseMealDataUrl+="/share/dateAndType";
-    }else{
-        _baseMealDataUrl+="/statistic/dateAndType";
+    console.log(location.href);
+    if (location.href.startsWith("https://www.zhuangcloud.cn/share?") || location.href.startsWith("https://zhuangcloud.cn/share?")) {
+        _baseMealDataUrl += "/share/dateAndType";
+    } else {
+        _baseMealDataUrl += "/statistic/dateAndType";
     }
     initBreakfastData();
     initLunchData();
