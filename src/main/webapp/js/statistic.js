@@ -166,7 +166,7 @@ function initChart() {
     threeMealOptions.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
     threeMealOptions.scaleLabelPlacement="outside";
     chartThreeMeal = $("#chart-threeMeal").pieChart(threeMealChartData, threeMealOptions);
-    $("#chart-title-threeMeal").text(__res.threeMealTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
+    $("#chart-title-threeMeal").text(__res.threeMealTitle+" ("+__res.total+" "+daySum.calorie.toFixed(__frictionDigits)+" kcal)");
 
     let threeEnergyChartData = [{
         value: daySum.protein*4,
@@ -187,7 +187,7 @@ function initChart() {
     threeEnergyOptions.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
     threeEnergyOptions.scaleLabelPlacement="outside";
     chartThreeMeal = $("#chart-threeEnergy").pieChart(threeEnergyChartData, threeEnergyOptions);
-    $("#chart-title-threeEnergy").text(__res.threeEnergyTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
+    $("#chart-title-threeEnergy").text(__res.threeEnergyTitle+" ("+__res.total+" "+daySum.calorie.toFixed(__frictionDigits)+" kcal)");
 }
 
 function initData() {

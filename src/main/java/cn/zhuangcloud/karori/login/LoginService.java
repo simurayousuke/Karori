@@ -51,6 +51,8 @@ public class LoginService {
     }
 
     public void logout(String token) {
+        if (null == token)
+            return;
         Redis.use("user").del(token);
     }
 
