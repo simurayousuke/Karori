@@ -1,6 +1,7 @@
 let sensitivity = 0.2;
 let __cmpKeys = ["calorie", "protein", "fat", "carbohydrate", "sodium", "salt", "cholesterol", "sugar", "vitaminA", "vitaminD", "vitaminE", "vitaminK", "vitaminB1", "vitaminB2", "vitaminB6", "vitaminB12", "vitaminC", "calcium", "iron", "magnesium", "zinc", "potassium"];
 let __frictionDigits = 2;
+let __shortUrlBase = "https://zhuangcloud.cn/s/";
 
 (function ($) {
 

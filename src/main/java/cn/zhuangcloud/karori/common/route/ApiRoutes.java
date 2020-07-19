@@ -20,6 +20,7 @@ public class ApiRoutes extends Routes {
         add("/api/v1/statistic", StatisticApi.class);
         add("/api/v1/share", ShareApi.class);
         add("/api/v1/target",TargetApi.class);
+        add("/api/v1/shortUrl", ShortUrlApi.class);
     }
 
 }

@@ -20,6 +20,7 @@ public class _MappingKit {
 		arp.addMapping("t_food", "fid", Food.class);
 		arp.addMapping("t_log", "lid", Log.class);
 		arp.addMapping("t_share", "sid", Share.class);
+		arp.addMapping("t_short_url", "suid", ShortUrl.class);
 		arp.addMapping("t_target", "tid", Target.class);
 		arp.addMapping("t_user", "uid", User.class);
 	}

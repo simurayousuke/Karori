@@ -55,7 +55,8 @@ $("#form-share").submit(function (e) {
     let button = $("#button-share");
     button.prop("disabled", true);
     let data = $(this).serializeObject();
-    switch (data.type) {
+    let date = $.formatDate(new Date());
+    switch (parseInt(data.type)) {
         case 0:
             delete data.startDate;
             delete data.endDate;
@@ -66,6 +67,7 @@ $("#form-share").submit(function (e) {
                 button.prop("disabled", false);
                 return;
             }
+            date = data.startDate;
             break;
         case 2:
             delete data.endDate;
@@ -74,14 +76,23 @@ $("#form-share").submit(function (e) {
                 button.prop("disabled", false);
                 return;
             }
+            date = data.startDate;
             break;
     }
     $.post1("/api/v1/share/create", data, function (data) {
         if ("ok" === data.state) {
-            $.ok(data.msg, () => {
-                $("#container-form-share").hide();
-                $("#result-token").val($.buildShareLink(data.token, null, __locale));
-                $("#container-result").show();
+            let url = $.buildShareLink(data.token, date, __locale);
+            $.post4("/api/v1/shortUrl/create", {url: url + "&shorten=true"}, function (data) {
+                if ("ok" === data.state) {
+                    url = __shortUrlBase + data.sUrl;
+                }
+            }, () => {
+            }, () => {
+                $.ok(__res.shareSuccess, () => {
+                    $("#container-form-share").hide();
+                    $("#result-token").val(url);
+                    $("#container-result").show();
+                });
             });
         } else {
             button.prop("disabled", false);
@@ -90,12 +101,12 @@ $("#form-share").submit(function (e) {
     }, button);
 });
 
-let clipboardToken=new ClipboardJS("#button-copy-token");
-clipboardToken.on('success', function(e) {
+let clipboardToken = new ClipboardJS("#button-copy-token");
+clipboardToken.on('success', function (e) {
     $.ok(__res.copySuccess);
     e.clearSelection();
 });
 
-clipboardToken.on('error', function(e) {
+clipboardToken.on('error', function (e) {
     $.error(__res.copyFail);
 });

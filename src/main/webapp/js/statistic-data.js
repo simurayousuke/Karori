@@ -4,6 +4,8 @@ let daySum = [];
 let __sync = 0;
 let _totalCalculated;
 let _targetValues = {};
+let _baseMealDataUrl="/api/v1";
+let shareToken = $.getPara("token");
 
 function getDate() {
     let reg = new RegExp("/[0-9]{4}-[0-9]{2}-[0-9]{2}$");
@@ -60,7 +62,7 @@ function _callback(data) {
 }
 
 function initBreakfastData() {
-    $.post4("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 1}, (data) => {
+    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 1,token:shareToken}, (data) => {
         breakfastData = data;
         _callback(breakfastData);
     }, () => {
@@ -71,7 +73,7 @@ function initBreakfastData() {
 }
 
 function initLunchData() {
-    $.post4("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 2}, (data) => {
+    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 2,token:shareToken}, (data) => {
         lunchData = data;
         _callback(lunchData);
     }, () => {
@@ -82,7 +84,7 @@ function initLunchData() {
 }
 
 function initDinnerData() {
-    $.post4("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 3}, (data) => {
+    $.post4(_baseMealDataUrl, {date: dateStatistic, type: 3,token:shareToken}, (data) => {
         dinnerData = data;
         _callback(dinnerData);
     }, () => {
@@ -93,7 +95,7 @@ function initDinnerData() {
 }
 
 function initTargetData() {
-    $.post4("/api/v1/target/fetch", {}, (data) => {
+    $.post4("/api/v1/target/fetch", {token:shareToken}, (data) => {
         _targetValues = data;
         _callback(null);
     }, () => {
@@ -104,6 +106,11 @@ function initTargetData() {
 }
 
 function initData() {
+    if(location.href.startsWith("https://www.zhuangcloud.cn/share?")){
+        _baseMealDataUrl+="/share/dateAndType";
+    }else{
+        _baseMealDataUrl+="/statistic/dateAndType";
+    }
     initBreakfastData();
     initLunchData();
     initDinnerData();

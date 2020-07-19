@@ -59,8 +59,23 @@ function initChart() {
             }
         ]
     };
-
-
     $('#chart-target').barChart(targetData, {responsive: true});
     $("#chart-title-target").text(__res.targetValue);
+
+    let targetCalorieData = {
+        labels: [__res.calorie],
+        datasets: [
+            {
+                label: __res.targetValue,
+                color: 'blue',
+                data: [$.formatNum(_targetValues.target_calorie)]
+            }, {
+                label: __res.currentValue,
+                color: 'green',
+                data: [$.formatNum(daySum.calorie)]
+            }
+        ]
+    };
+    $('#chart-target-calorie').barChart(targetCalorieData, {responsive: true});
+    $("#chart-title-target-calorie").text(__res.targetValue);
 }

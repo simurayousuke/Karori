@@ -13,3 +13,6 @@
 #namespace("target")
 #include("target.sql")
 #end
+#namespace("shortUrl")
+#include("short-url.sql")
+#end

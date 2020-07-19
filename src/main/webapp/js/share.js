@@ -1,4 +1,3 @@
-let shareToken = $.getPara("token");
 let inputDate = $("#input-date-statistic");
 
 inputDate.val(dateStatistic);
@@ -19,12 +18,20 @@ $("#input-date-statistic").datetimepicker(
     $.jump($.buildShareLink(shareToken, inputDate.val()));
 });
 
+function initDate(type) {
+    if ($.getPara("shorten") === "true" && parseInt(type) === 0) {
+        dateStatistic = $.formatDate(new Date());
+        inputDate.val(dateStatistic);
+    }
+}
+
 function checkPermission() {
     $.post4("/api/v1/share/check", {token: shareToken, date: dateStatistic}, (data) => {
         if (data.access) {
-            if(parseInt(data.type??0)===2){
+            if (parseInt(data.type ?? 0) === 2) {
                 $("#container-input-date").hide();
             }
+            initDate(data.type);
             initData();
         } else {
             $.error(__res.shareTokenNoPermission, () => {

@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.route;
 
+import cn.zhuangcloud.karori.common.ShortUrlController;
 import cn.zhuangcloud.karori.common.base.ErrorController;
 import cn.zhuangcloud.karori.common.base.ResJsController;
 import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
@@ -40,5 +41,6 @@ public class FrontRoutes extends Routes {
         add("/share", ShareController.class);
 
         add("/target", TargetController.class);
+        add("/s", ShortUrlController.class);
     }
 }

@@ -141,6 +141,30 @@ create table t_target
 create unique index t_target_uid_uindex
     on t_target (uid);
 
+drop table if exists t_short_url;
+create table t_short_url
+(
+    suid int auto_increment,
+    short_url varchar(16) not null,
+    long_url varchar(256) not null,
+    creator int not null comment 'uid',
+    create_time datetime default current_timestamp not null,
+    update_time datetime default current_timestamp on update current_timestamp not null,
+    constraint t_short_url_pk
+        primary key (suid),
+    constraint t_short_url_t_user_uid_fk
+        foreign key (creator) references t_user (uid)
+);
+
+create index t_short_url_creator_index
+    on t_short_url (creator);
+
+create index t_short_url_long_url_index
+    on t_short_url (long_url);
+
+create unique index t_short_url_short_url_uindex
+    on t_short_url (short_url);
+
 
 
 SET FOREIGN_KEY_CHECKS = 'ON';

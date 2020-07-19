@@ -10,14 +10,19 @@ public class TargetService {
         return dao.findFirst(dao.getSqlPara("target.findByUid", uid));
     }
 
+    public Target getNew(){
+        Target target = new Target();
+        target.setTargetCalorie(0);
+        target.setTargetProtein(0);
+        target.setTargetFat(0);
+        target.setTargetCarbohydrate(0);
+        return target;
+    }
+
     public Target getByUidNotNull(Integer uid) {
         Target target = getByUid(uid);
         if (null == target) {
-            target = new Target();
-            target.setTargetCalorie(0);
-            target.setTargetProtein(0);
-            target.setTargetFat(0);
-            target.setTargetCarbohydrate(0);
+            target = getNew();
         }
         return target;
     }
