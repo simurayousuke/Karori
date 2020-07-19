@@ -34,7 +34,7 @@ $("#input-date-statistic").datetimepicker(
         initialDate: dateStatistic,
         language: __locale.substring(0, 2)
     }).on('changeDate', function (ev) {
-    $.jump("/statistic/" + inputDate.val());
+    $.jump($.buildShareLink(shareToken, inputDate.val()));
 });
 
 

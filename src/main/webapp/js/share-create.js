@@ -50,20 +50,6 @@ $("#input-share-type").change((e) => {
     switchView(e.target.value);
 });
 
-function buildShareLink(token, date, locale) {
-    if (!token)
-        return "";
-    let shareLink = "https://zhuangcloud.cn/share?token=";
-    shareLink += token;
-    if (date) {
-        shareLink += "&date=" + date;
-    }
-    if (locale) {
-        shareLink += "&_locale=" + locale;
-    }
-    return shareLink;
-}
-
 $("#form-share").submit(function (e) {
     e.preventDefault();
     let button = $("#button-share");
@@ -95,7 +81,7 @@ $("#form-share").submit(function (e) {
             $.ok(data.msg, () => {
                 console.log(data.token);
                 $("#container-form-share").hide();
-                $("#result-token").val(buildShareLink(data.token, null, __locale));
+                $("#result-token").val($.buildShareLink(data.token, null, __locale));
                 $("#container-result").show();
             });
         } else {

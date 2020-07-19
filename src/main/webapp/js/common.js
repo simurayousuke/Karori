@@ -160,6 +160,20 @@ let __frictionDigits = 2;
         }
     };
 
+    $.buildShareLink=function (token, date, locale) {
+        if (!token)
+            return "";
+        let shareLink = "https://zhuangcloud.cn/share?token=";
+        shareLink += token;
+        if (date) {
+            shareLink += "&date=" + date;
+        }
+        if (locale) {
+            shareLink += "&_locale=" + locale;
+        }
+        return shareLink;
+    };
+
     $.formatDate = function (date) {
         let dd = date.getDate();
         let mm = date.getMonth() + 1; //January is 0!
