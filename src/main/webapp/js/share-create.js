@@ -79,7 +79,6 @@ $("#form-share").submit(function (e) {
     $.post1("/api/v1/share/create", data, function (data) {
         if ("ok" === data.state) {
             $.ok(data.msg, () => {
-                console.log(data.token);
                 $("#container-form-share").hide();
                 $("#result-token").val($.buildShareLink(data.token, null, __locale));
                 $("#container-result").show();
@@ -89,4 +88,14 @@ $("#form-share").submit(function (e) {
             $.error(data.msg);
         }
     }, button);
+});
+
+let clipboardToken=new ClipboardJS("#button-copy-token");
+clipboardToken.on('success', function(e) {
+    $.ok(__res.copySuccess);
+    e.clearSelection();
+});
+
+clipboardToken.on('error', function(e) {
+    $.error(__res.copyFail);
 });

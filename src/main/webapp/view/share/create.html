@@ -28,10 +28,11 @@
     </form>
 </div>
 <div class="container container-form-mine" id="container-result" hidden>
+    <div class="help-block">#(_res.get("copyNotice"))</div>
     <div class="input-group">
         <input class="form-control" id="result-token" type="text" readonly>
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button" data-clipboard-target="#result-token"><i class="icon icon-copy"></i></button>
+            <button class="btn btn-default" type="button" data-clipboard-target="#result-token" id="button-copy-token"><i class="icon icon-copy"></i></button>
         </span>
     </div>
 </div>
