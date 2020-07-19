@@ -1,0 +1,42 @@
+#set(title=_res.get(title))
+#@layout()
+#define main()
+<div class="container container-form-mine" id="container-form-target">
+    <h1>#(title)</h1>
+    <form id="form-target">
+        <div class="form-group">
+            <label class="required" for="input-target-calorie">#(_res.get("calorie"))</label>
+            <div class="input-group">
+                <input class="form-control" id="input-target-calorie" name="targetCalorie" step="0.0001" type="number" value="#(_target.targetCalorie??0)">
+                <span class="input-group-addon">kcal</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="required" for="input-target-protein">#(_res.get("protein"))</label>
+            <div class="input-group">
+                <input class="form-control" id="input-target-protein" name="targetProtein" step="0.0001" type="number" value="#(_target.targetProtein??0)">
+                <span class="input-group-addon">g</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="required" for="input-target-fat">#(_res.get("fat"))</label>
+            <div class="input-group">
+                <input class="form-control" id="input-target-fat" name="targetFat" step="0.0001" type="number" value="#(_target.targetFat??0)">
+                <span class="input-group-addon">g</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="required" for="input-target-carbohydrate">#(_res.get("carbohydrate"))</label>
+            <div class="input-group">
+                <input class="form-control" id="input-target-carbohydrate" name="targetCarbohydrate" step="0.0001" type="number" value="#(_target.targetCarbohydrate??0)">
+                <span class="input-group-addon">g</span>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block" id="button-target" type="submit">#(_res.get("submit"))</button>
+    </form>
+</div>
+#end
+
+#define js()
+<script src="/js/target.js?#(_generateUuid())"></script>
+#end

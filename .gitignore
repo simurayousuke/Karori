@@ -101,3 +101,4 @@ out
 gen
 /src/main/resources/config.txt
 /src/main/resources/config-dev.txt
+!/src/*/target/
