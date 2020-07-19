@@ -56,7 +56,6 @@ create table t_composition
     comment 'per 100g';
 
 drop table if exists t_user;
-
 create table t_user
 (
     uid      int auto_increment
@@ -93,6 +92,32 @@ create table t_log
 
 create index t_log_uid_meal_date_type_index
     on t_log (uid, meal_date, type);
+
+drop table if exists t_share;
+create table t_share
+(
+    sid int auto_increment,
+    token varchar(64) not null,
+    uid int not null,
+    type int default 0 not null comment '0 all, 1 period, 2 day',
+    start_date datetime null,
+    end_date datetime null,
+    create_time datetime default current_timestamp not null,
+    update_time datetime default current_timestamp on update current_timestamp not null,
+    constraint t_share_pk
+        primary key (sid),
+    constraint t_share_t_user_uid_fk
+        foreign key (uid) references t_user (uid)
+);
+
+create unique index t_share_token_uindex
+    on t_share (token);
+
+create unique index t_share_token_uindex_2
+    on t_share (token);
+
+create index t_share_uid_index
+    on t_share (uid);
 
 
 

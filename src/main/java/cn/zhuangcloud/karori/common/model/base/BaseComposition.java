@@ -12,7 +12,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setCid(java.lang.Integer cid) {
 		set("cid", cid);
 	}
-
+	
 	public java.lang.Integer getCid() {
 		return getInt("cid");
 	}
@@ -23,7 +23,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setCalorie(java.lang.Double calorie) {
 		set("calorie", calorie);
 	}
-
+	
 	/**
 	 * kcal
 	 */
@@ -37,7 +37,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setProtein(java.lang.Double protein) {
 		set("protein", protein);
 	}
-
+	
 	/**
 	 * g
 	 */
@@ -51,7 +51,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setFat(java.lang.Double fat) {
 		set("fat", fat);
 	}
-
+	
 	/**
 	 * g
 	 */
@@ -107,7 +107,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setCholesterol(java.lang.Double cholesterol) {
 		set("cholesterol", cholesterol);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -121,7 +121,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setSugar(java.lang.Double sugar) {
 		set("sugar", sugar);
 	}
-
+	
 	/**
 	 * g
 	 */
@@ -135,7 +135,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminA(java.lang.Double vitaminA) {
 		set("vitaminA", vitaminA);
 	}
-
+	
 	/**
 	 * ug
 	 */
@@ -149,7 +149,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminD(java.lang.Double vitaminD) {
 		set("vitaminD", vitaminD);
 	}
-
+	
 	/**
 	 * ug
 	 */
@@ -163,7 +163,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminE(java.lang.Double vitaminE) {
 		set("vitaminE", vitaminE);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -177,7 +177,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminK(java.lang.Double vitaminK) {
 		set("vitaminK", vitaminK);
 	}
-
+	
 	/**
 	 * ug
 	 */
@@ -191,7 +191,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminB1(java.lang.Double vitaminB1) {
 		set("vitaminB1", vitaminB1);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -205,7 +205,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminB2(java.lang.Double vitaminB2) {
 		set("vitaminB2", vitaminB2);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -219,7 +219,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setVitaminB6(java.lang.Double vitaminB6) {
 		set("vitaminB6", vitaminB6);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -261,7 +261,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setCalcium(java.lang.Double calcium) {
 		set("calcium", calcium);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -275,7 +275,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setIron(java.lang.Double iron) {
 		set("iron", iron);
 	}
-
+	
 	/**
 	 * mg
 	 */
@@ -289,7 +289,7 @@ public abstract class BaseComposition<M extends BaseComposition<M>> extends Mode
 	public void setMagnesium(java.lang.Double magnesium) {
 		set("magnesium", magnesium);
 	}
-
+	
 	/**
 	 * mg
 	 */
