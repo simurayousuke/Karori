@@ -1,7 +1,9 @@
 package cn.zhuangcloud.karori.statistic;
 
-import cn.zhuangcloud.karori.common.MyController;
+import cn.zhuangcloud.karori.common.base.MyController;
+import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
 import cn.zhuangcloud.karori.common.kit.ConvertKit;
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Inject;
 
 import java.util.Date;
@@ -11,6 +13,7 @@ public class StatisticController extends MyController {
     @Inject
     StatisticService statisticService;
 
+    @Before(NeedLogin.class)
     public void index() {
         title("statistic");
         Date date = getParaToDate();

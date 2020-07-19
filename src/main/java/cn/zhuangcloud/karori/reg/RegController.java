@@ -1,6 +1,6 @@
 package cn.zhuangcloud.karori.reg;
 
-import cn.zhuangcloud.karori.common.MyController;
+import cn.zhuangcloud.karori.common.base.MyController;
 import cn.zhuangcloud.karori.login.LoginService;
 import com.jfinal.aop.Inject;
 

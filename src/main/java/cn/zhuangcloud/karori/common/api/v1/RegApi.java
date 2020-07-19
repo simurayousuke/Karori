@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.api.v1;
 
+import cn.zhuangcloud.karori.common.base.ApiV1;
 import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
 import cn.zhuangcloud.karori.login.LoginService;
 import com.jfinal.aop.Clear;

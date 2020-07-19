@@ -1,4 +1,4 @@
-package cn.zhuangcloud.karori.common.api.v1;
+package cn.zhuangcloud.karori.common.base;
 
 import cn.zhuangcloud.karori.common.model.User;
 import com.jfinal.core.Controller;

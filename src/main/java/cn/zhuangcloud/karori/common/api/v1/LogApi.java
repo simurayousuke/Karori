@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.api.v1;
 
+import cn.zhuangcloud.karori.common.base.ApiV1;
 import cn.zhuangcloud.karori.common.model.Log;
 import cn.zhuangcloud.karori.log.LogService;
 import com.jfinal.aop.Inject;

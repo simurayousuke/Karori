@@ -1,4 +1,4 @@
-package cn.zhuangcloud.karori.common;
+package cn.zhuangcloud.karori.common.handler;
 
 import com.jfinal.handler.Handler;
 import com.jfinal.kit.HandlerKit;

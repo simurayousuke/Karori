@@ -1,5 +1,7 @@
-package cn.zhuangcloud.karori.common;
+package cn.zhuangcloud.karori.common.route;
 
+import cn.zhuangcloud.karori.common.base.ErrorController;
+import cn.zhuangcloud.karori.common.base.ResJsController;
 import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
 import cn.zhuangcloud.karori.food.FoodController;
 import cn.zhuangcloud.karori.index.IndexController;

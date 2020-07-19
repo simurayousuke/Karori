@@ -1,4 +1,4 @@
-package cn.zhuangcloud.karori.common;
+package cn.zhuangcloud.karori.common.base;
 
 import com.jfinal.i18n.Res;
 

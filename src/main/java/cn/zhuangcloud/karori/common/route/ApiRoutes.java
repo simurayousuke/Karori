@@ -1,4 +1,4 @@
-package cn.zhuangcloud.karori.common;
+package cn.zhuangcloud.karori.common.route;
 
 import cn.zhuangcloud.karori.common.api.v1.*;
 import cn.zhuangcloud.karori.common.interceptor.ApiExceptionInterceptor;

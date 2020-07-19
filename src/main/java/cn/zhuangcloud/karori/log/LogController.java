@@ -1,6 +1,6 @@
 package cn.zhuangcloud.karori.log;
 
-import cn.zhuangcloud.karori.common.MyController;
+import cn.zhuangcloud.karori.common.base.MyController;
 import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
 import cn.zhuangcloud.karori.common.kit.ConvertKit;
 import cn.zhuangcloud.karori.upload.FoodService;

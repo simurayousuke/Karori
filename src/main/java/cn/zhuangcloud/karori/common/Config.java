@@ -1,8 +1,11 @@
 package cn.zhuangcloud.karori.common;
 
+import cn.zhuangcloud.karori.common.handler.StaticHandler;
 import cn.zhuangcloud.karori.common.interceptor.StaticInterceptor;
 import cn.zhuangcloud.karori.common.kit.SharedMethodLib;
 import cn.zhuangcloud.karori.common.model._MappingKit;
+import cn.zhuangcloud.karori.common.route.ApiRoutes;
+import cn.zhuangcloud.karori.common.route.FrontRoutes;
 import com.jfinal.config.*;
 import com.jfinal.i18n.I18nInterceptor;
 import com.jfinal.json.MixedJsonFactory;

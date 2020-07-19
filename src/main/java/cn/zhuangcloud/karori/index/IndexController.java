@@ -1,6 +1,6 @@
 package cn.zhuangcloud.karori.index;
 
-import cn.zhuangcloud.karori.common.MyController;
+import cn.zhuangcloud.karori.common.base.MyController;
 
 public class IndexController extends MyController {
 
