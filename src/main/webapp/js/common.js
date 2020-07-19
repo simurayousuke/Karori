@@ -173,13 +173,20 @@ let __frictionDigits = 2;
     };
 
     $.formatNum = function (num, frictionDigits) {
+        function parse(num, digits) {
+            if (digits < 1) {
+                return Math.round(num);
+            }
+            return parseFloat(num.toFixed(digits));
+        }
+
         if (!num) {
             return 0;
         }
-        if (frictionDigits) {
-            return parseFloat(num.toFixed(frictionDigits));
+        if ("number" === typeof frictionDigits) {
+            return parse(num, frictionDigits);
         }
-        return parseFloat(num.toFixed(__frictionDigits));
+        return parse(num, __frictionDigits);
     };
 
     $.buildShareLink = function (token, date, locale) {
