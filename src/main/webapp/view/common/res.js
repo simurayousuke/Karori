@@ -3,4 +3,4 @@ let __res = {
 #(p.key):"#(p.value)",
 #end
 };
-let _locale="#(__locale)";
+let __locale="#(__locale)";

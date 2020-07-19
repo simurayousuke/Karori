@@ -7,6 +7,9 @@ import com.jfinal.i18n.Res;
 import com.jfinal.kit.Ret;
 import com.jfinal.kit.StrKit;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ApiV1 extends Controller {
 
     protected Res getRes() {
@@ -44,6 +47,15 @@ public class ApiV1 extends Controller {
 
     protected Integer getUid() {
         return ((User) getAttr("user")).getUid();
+    }
+
+    protected User getUser() {
+        return ((User) getAttr("user"));
+    }
+
+    protected boolean isSameDay(Date date1,Date date2){
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        return fmt.format(date1).equals(fmt.format(date2));
     }
 
 }

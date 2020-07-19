@@ -7,3 +7,6 @@
 #namespace("statistic")
 #include("statistic.sql")
 #end
+#namespace("share")
+#include("share.sql")
+#end

@@ -12,7 +12,7 @@ $(".form-date").datetimepicker(
         forceParse: 0,
         format: "yyyy-mm-dd",
         initialDate:defaultMealDate,
-        language:_locale.substring(0,2)
+        language:__locale.substring(0,2)
     });
 
 $("#form-log").submit(function (e) {

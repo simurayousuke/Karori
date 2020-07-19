@@ -18,6 +18,7 @@ public class ApiRoutes extends Routes {
         add("/api/v1/reg", RegApi.class);
         add("/api/v1/log", LogApi.class);
         add("/api/v1/statistic", StatisticApi.class);
+        add("/api/v1/share", ShareApi.class);
     }
 
 }

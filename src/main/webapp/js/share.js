@@ -7,15 +7,15 @@ let chartThreeMeal;
 let _totalCalculated;
 
 function getDate() {
-    let reg = new RegExp("/[0-9]{4}-[0-9]{2}-[0-9]{2}$");
-    let ret = reg.exec(location.href);
+    let ret = $.getPara("date");
     if (ret) {
-        return ret[0].substring(1);
+        return ret;
     } else {
         return $.formatDate(new Date());
     }
 }
 
+let shareToken=$.getPara("token");
 let dateStatistic = getDate();
 let inputDate = $("#input-date-statistic");
 
@@ -205,17 +205,17 @@ function initData() {
         }
     }
 
-    $.post3("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 1}, (data) => {
+    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 1,token:shareToken}, (data) => {
         breakfastData = data
     }, () => {
         _callback(breakfastData)
     });
-    $.post3("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 2}, (data) => {
+    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 2,token:shareToken}, (data) => {
         lunchData = data
     }, () => {
         _callback(lunchData)
     });
-    $.post3("/api/v1/statistic/dateAndType", {date: dateStatistic, type: 3}, (data) => {
+    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 3,token:shareToken}, (data) => {
         dinnerData = data
     }, () => {
         _callback(dinnerData)

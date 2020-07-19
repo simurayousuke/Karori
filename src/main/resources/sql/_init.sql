@@ -58,14 +58,17 @@ create table t_composition
 drop table if exists t_user;
 create table t_user
 (
-    uid      int auto_increment
+    uid int auto_increment
         primary key,
     username varchar(16) not null,
-    salt     text        not null,
-    pwd      text        not null,
+    salt text not null,
+    pwd text not null,
     constraint t_user_username_uindex
         unique (username)
 );
+create index t_user_uid_username_index
+    on t_user (uid, username);
+
 INSERT INTO karori.t_user (username, salt, pwd)
 VALUES ('admin', 'b73038a4218e461fabcae6e06f82ba82',
         '5f2a544ff370e8deb03a399a4e5dee741d2919729e49a1df0aa25d8ab811052e');
@@ -96,28 +99,27 @@ create index t_log_uid_meal_date_type_index
 drop table if exists t_share;
 create table t_share
 (
-    sid int auto_increment,
+    sid int auto_increment
+        primary key,
     token varchar(64) not null,
     uid int not null,
     type int default 0 not null comment '0 all, 1 period, 2 day',
     start_date datetime null,
     end_date datetime null,
-    create_time datetime default current_timestamp not null,
-    update_time datetime default current_timestamp on update current_timestamp not null,
-    constraint t_share_pk
-        primary key (sid),
-    constraint t_share_t_user_uid_fk
-        foreign key (uid) references t_user (uid)
+    create_time datetime default CURRENT_TIMESTAMP not null,
+    update_time datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+    username varchar(16) not null,
+    constraint t_share_token_uindex
+        unique (token),
+    constraint t_share_token_uindex_2
+        unique (token),
+    constraint t_share_t_user_uid_username_fk
+        foreign key (uid, username) references t_user (uid, username)
 );
-
-create unique index t_share_token_uindex
-    on t_share (token);
-
-create unique index t_share_token_uindex_2
-    on t_share (token);
 
 create index t_share_uid_index
     on t_share (uid);
+
 
 
 

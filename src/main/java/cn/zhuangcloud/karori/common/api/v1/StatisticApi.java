@@ -9,6 +9,7 @@ public class StatisticApi extends ApiV1 {
     @Inject
     StatisticService statisticService;
 
+    @Deprecated
     public void date() {
         renderJson(statisticService.unionByUidAndDate(getUid(), getDate("date")));
     }

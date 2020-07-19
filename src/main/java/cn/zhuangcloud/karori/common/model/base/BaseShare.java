@@ -79,4 +79,12 @@ public abstract class BaseShare<M extends BaseShare<M>> extends Model<M> impleme
 		return get("update_time");
 	}
 
+	public void setUsername(java.lang.String username) {
+		set("username", username);
+	}
+	
+	public java.lang.String getUsername() {
+		return getStr("username");
+	}
+
 }
