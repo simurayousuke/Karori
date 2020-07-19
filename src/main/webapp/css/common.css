@@ -51,7 +51,7 @@ a:focus {
 }
 
 .my-chart{
-    width: 430px;
+    /*width: 430px;*/
     float: left;
     margin: 30px;
     border: solid thin darkgray;
