@@ -1,5 +1,6 @@
 package cn.zhuangcloud.karori.common.base;
 
+import cn.zhuangcloud.karori.common.kit.DateKit;
 import cn.zhuangcloud.karori.common.model.User;
 import com.jfinal.core.Controller;
 import com.jfinal.i18n.I18n;
@@ -7,7 +8,6 @@ import com.jfinal.i18n.Res;
 import com.jfinal.kit.Ret;
 import com.jfinal.kit.StrKit;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ApiV1 extends Controller {
@@ -54,8 +54,7 @@ public class ApiV1 extends Controller {
     }
 
     protected boolean isSameDay(Date date1,Date date2){
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-        return fmt.format(date1).equals(fmt.format(date2));
+        return DateKit.isSameDay(date1,date2);
     }
 
 }

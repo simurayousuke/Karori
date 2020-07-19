@@ -151,6 +151,18 @@ let __frictionDigits = 2;
 
     };
 
+    $.post4 = function (url, data, success, error, complete) {
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: data,
+            success: success,
+            error: error,
+            complete: complete
+        });
+
+    };
+
     $.jump = function (url) {
         location.href = url;
     };
@@ -160,7 +172,7 @@ let __frictionDigits = 2;
         }
     };
 
-    $.buildShareLink=function (token, date, locale) {
+    $.buildShareLink = function (token, date, locale) {
         if (!token)
             return "";
         let shareLink = "https://zhuangcloud.cn/share?token=";

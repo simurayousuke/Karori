@@ -15,7 +15,7 @@ function getDate() {
     }
 }
 
-let shareToken=$.getPara("token");
+let shareToken = $.getPara("token");
 let dateStatistic = getDate();
 let inputDate = $("#input-date-statistic");
 
@@ -161,33 +161,33 @@ function initChart() {
         label: __res.dinner
     }];
     let threeMealOptions = __defaultChartConfig;
-    threeMealOptions.scaleShowLabels=true;
-    threeMealOptions.scaleLabel="<%=label%>: <%= (value/daySum.calorie).toFixed(2)*100 %>%";
-    threeMealOptions.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
-    threeMealOptions.scaleLabelPlacement="outside";
+    threeMealOptions.scaleShowLabels = true;
+    threeMealOptions.scaleLabel = "<%=label%>: <%= (value/daySum.calorie).toFixed(2)*100 %>%";
+    threeMealOptions.tooltipTemplate = "<%if (label){%><%=label%>: <%}%><%= value %> kcal";
+    threeMealOptions.scaleLabelPlacement = "outside";
     chartThreeMeal = $("#chart-threeMeal").pieChart(threeMealChartData, threeMealOptions);
-    $("#chart-title-threeMeal").text(__res.threeMealTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
+    $("#chart-title-threeMeal").text(__res.threeMealTitle + " (" + __res.total + " " + daySum.calorie + " kcal)");
 
     let threeEnergyChartData = [{
-        value: daySum.protein*4,
+        value: daySum.protein * 4,
         color: "#fab27b",
         label: __res.protein
     }, {
-        value: daySum.fat*9,
+        value: daySum.fat * 9,
         color: "#f58220",
         label: __res.fat
     }, {
-        value: daySum.carbohydrate*4,
+        value: daySum.carbohydrate * 4,
         color: "#faa755",
         label: __res.carbohydrate
     }];
     let threeEnergyOptions = __defaultChartConfig;
-    threeEnergyOptions.scaleShowLabels=true;
-    threeEnergyOptions.scaleLabel="<%=label%>: <%= (value/_totalCalculated).toFixed(2)*100 %>%";
-    threeEnergyOptions.tooltipTemplate="<%if (label){%><%=label%>: <%}%><%= value %> kcal";
-    threeEnergyOptions.scaleLabelPlacement="outside";
+    threeEnergyOptions.scaleShowLabels = true;
+    threeEnergyOptions.scaleLabel = "<%=label%>: <%= (value/_totalCalculated).toFixed(2)*100 %>%";
+    threeEnergyOptions.tooltipTemplate = "<%if (label){%><%=label%>: <%}%><%= value %> kcal";
+    threeEnergyOptions.scaleLabelPlacement = "outside";
     chartThreeMeal = $("#chart-threeEnergy").pieChart(threeEnergyChartData, threeEnergyOptions);
-    $("#chart-title-threeEnergy").text(__res.threeEnergyTitle+" ("+__res.total+" "+daySum.calorie+" kcal)");
+    $("#chart-title-threeEnergy").text(__res.threeEnergyTitle + " (" + __res.total + " " + daySum.calorie + " kcal)");
 }
 
 function initData() {
@@ -199,29 +199,45 @@ function initData() {
             lunchSum = getSumRow(lunchData);
             dinnerSum = getSumRow(dinnerData);
             daySum = getDaySum(breakfastSum, lunchSum, dinnerSum);
-            _totalCalculated=daySum.protein*4+daySum.fat*9+daySum.carbohydrate*4;
+            _totalCalculated = daySum.protein * 4 + daySum.fat * 9 + daySum.carbohydrate * 4;
             initChart();
             $("#main-statistic").removeClass("loading");
         }
     }
 
-    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 1,token:shareToken}, (data) => {
+    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 1, token: shareToken}, (data) => {
         breakfastData = data
     }, () => {
         _callback(breakfastData)
     });
-    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 2,token:shareToken}, (data) => {
+    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 2, token: shareToken}, (data) => {
         lunchData = data
     }, () => {
         _callback(lunchData)
     });
-    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 3,token:shareToken}, (data) => {
+    $.post3("/api/v1/share/dateAndType", {date: dateStatistic, type: 3, token: shareToken}, (data) => {
         dinnerData = data
     }, () => {
         _callback(dinnerData)
     });
 }
 
+function checkPermission() {
+    $.post4("/api/v1/share/check", {token: shareToken, date: dateStatistic}, (data) => {
+        if (data.access) {
+            initData();
+        } else {
+            $.error(__res.shareTokenNoPermission, () => {
+                $.jump("/error/403");
+            });
+        }
+    }, () => {
+        $.error(__res.networkError, () => {
+            checkPermission();
+        });
+    });
+}
+
 $(document).ready(function () {
-    initData();
+    checkPermission();
 });

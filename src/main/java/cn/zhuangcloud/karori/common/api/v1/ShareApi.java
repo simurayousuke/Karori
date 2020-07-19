@@ -5,6 +5,7 @@ import cn.zhuangcloud.karori.common.api.v1.validator.TokenDateRequired;
 import cn.zhuangcloud.karori.common.base.ApiV1;
 import cn.zhuangcloud.karori.common.interceptor.NeedLogin;
 import cn.zhuangcloud.karori.common.model.Share;
+import cn.zhuangcloud.karori.share.ShareService;
 import cn.zhuangcloud.karori.statistic.StatisticService;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
@@ -18,6 +19,8 @@ public class ShareApi extends ApiV1 {
 
     @Inject
     StatisticService statisticService;
+    @Inject
+    ShareService shareService;
 
     @Clear(NeedLogin.class)
     @Before(TokenDateRequired.class)
@@ -25,6 +28,13 @@ public class ShareApi extends ApiV1 {
         Date date = getAttr("__date");
         Share share = getAttr("__share");
         renderJson(statisticService.unionByUidAndDateAndType(share.getUid(), date, getInt("type")));
+    }
+
+    @Clear(NeedLogin.class)
+    public void check() {
+        String token = get("token");
+        Date date = getDate("date");
+        renderJson(Ret.by("access", shareService.check(token, date)));
     }
 
     @Before(ShareApiValidator.class)
