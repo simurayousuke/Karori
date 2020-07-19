@@ -23,6 +23,9 @@ function initDate(type) {
         dateStatistic = $.formatDate(new Date());
         inputDate.val(dateStatistic);
     }
+    $("#display-date").text(
+        $("#display-date").text()+dateStatistic
+    );
 }
 
 function checkPermission() {
