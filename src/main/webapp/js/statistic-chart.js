@@ -14,7 +14,7 @@ function initChart() {
     }];
     let threeMealOptions = __defaultChartConfig;
     threeMealOptions.scaleShowLabels = true;
-    threeMealOptions.scaleLabel = "<%=label%>: <%= $.formatNum(value/daySum.calorie*100) %>%";
+    threeMealOptions.scaleLabel = "<%=label%>: <%= $.formatNum(value/daySum.calorie*100,0) %>%";
     threeMealOptions.tooltipTemplate = "<%if (label){%><%=label%>: <%}%><%= value %> kcal";
     threeMealOptions.scaleLabelPlacement = "outside";
     $("#chart-threeMeal").pieChart(threeMealChartData, threeMealOptions);
@@ -35,7 +35,7 @@ function initChart() {
     }];
     let threeEnergyOptions = __defaultChartConfig;
     threeEnergyOptions.scaleShowLabels = true;
-    threeEnergyOptions.scaleLabel = "<%=label%>: <%= $.formatNum(value/_totalCalculated*100) %>%";
+    threeEnergyOptions.scaleLabel = "<%=label%>: <%= $.formatNum(value/_totalCalculated*100,0) %>%";
     threeEnergyOptions.tooltipTemplate = "<%if (label){%><%=label%>: <%}%><%= value %> kcal";
     threeEnergyOptions.scaleLabelPlacement = "outside";
     $("#chart-threeEnergy").pieChart(threeEnergyChartData, threeEnergyOptions);

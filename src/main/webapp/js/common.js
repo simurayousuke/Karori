@@ -172,9 +172,12 @@ let __frictionDigits = 2;
         }
     };
 
-    $.formatNum=function(num){
-        if(!num) {
+    $.formatNum = function (num, frictionDigits) {
+        if (!num) {
             return 0;
+        }
+        if (frictionDigits) {
+            return parseFloat(num.toFixed(frictionDigits));
         }
         return parseFloat(num.toFixed(__frictionDigits));
     };
