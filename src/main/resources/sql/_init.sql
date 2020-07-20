@@ -58,16 +58,19 @@ create table t_composition
 drop table if exists t_user;
 create table t_user
 (
-    uid int auto_increment
-        primary key,
-    username varchar(16) not null,
-    salt text not null,
-    pwd text not null,
-    constraint t_user_username_uindex
-        unique (username)
+	uid int auto_increment
+		primary key,
+	username varchar(16) not null,
+	salt text not null,
+	pwd text not null,
+	create_time datetime default CURRENT_TIMESTAMP not null,
+	update_time datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
+	constraint t_user_username_uindex
+		unique (username)
 );
+
 create index t_user_uid_username_index
-    on t_user (uid, username);
+	on t_user (uid, username);
 
 INSERT INTO karori.t_user (username, salt, pwd)
 VALUES ('admin', 'b73038a4218e461fabcae6e06f82ba82',
