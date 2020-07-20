@@ -21,15 +21,15 @@ function initChart() {
     $("#chart-title-threeMeal").text(__res.threeMealTitle + " (" + __res.total + " " + $.formatNum(daySum.calorie) + " kcal)");
 
     let threeEnergyChartData = [{
-        value: daySum.protein * 4,
+        value: $.formatNum(daySum.protein * 4),
         color: "#fab27b",
         label: __res.protein
     }, {
-        value: daySum.fat * 9,
+        value: $.formatNum(daySum.fat * 9),
         color: "#f58220",
         label: __res.fat
     }, {
-        value: daySum.carbohydrate * 4,
+        value: $.formatNum(daySum.carbohydrate * 4),
         color: "#faa755",
         label: __res.carbohydrate
     }];
