@@ -41,6 +41,6 @@ public class FrontRoutes extends Routes {
         add("/share", ShareController.class);
 
         add("/target", TargetController.class);
-        add("/s", ShortUrlController.class);
+        add("/s", ShortUrlController.class,"shortUrl");
     }
 }
