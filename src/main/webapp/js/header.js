@@ -1,4 +1,4 @@
 function language(locale) {
     Cookies.set("_locale", locale);
-    location.reload();
+    location.href=$.delPara("_locale");
 }

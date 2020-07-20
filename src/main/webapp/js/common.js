@@ -73,12 +73,25 @@ let __shortUrlBase = "https://zhuangcloud.cn/s/";
      * @return {string}
      */
     $.getPara = function (name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
         if (r !== null) {
             return decodeURIComponent(r[2]);
         }
         return "";
+    };
+
+    $.delPara = function (name) {
+        let url = location.href;
+        let para = location.search.substr(1);
+        let base = url.replace(para, "");
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        let r = para.match(reg);
+        if (r !== null) {
+            para = para.replace(r[0], (r[1] === "" || r[3] === "") ? "" : "&");
+            url = base + para;
+        }
+        return url;
     };
 
     $.addSumRow = function (data) {

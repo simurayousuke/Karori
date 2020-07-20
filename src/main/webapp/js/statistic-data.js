@@ -107,7 +107,6 @@ function initTargetData() {
 }
 
 function initData() {
-    console.log(location.href);
     if (location.href.startsWith("https://www.zhuangcloud.cn/share?") || location.href.startsWith("https://zhuangcloud.cn/share?")) {
         _baseMealDataUrl += "/share/dateAndType";
     } else {
