@@ -2,7 +2,7 @@ function initDatagrid() {
     let mealStatisticOption = {
         dataSource: {
             cols: [
-                {name: 'foodname', label: __res.foodname, width: 250},
+                {name: 'foodname', label: __res.foodname, width: 400},
                 //{name: 'weight', label: resWeight, width: 120, valueType: 'double'},
                 {name: 'calorie', label: __res.calorie + "(kcal)", width: 120, valueType: 'double'},
                 {name: 'protein', label: __res.protein + "(g)", width: 120, valueType: 'double'},
@@ -23,6 +23,11 @@ function initDatagrid() {
             C6: {
                 style: {
                     display: "none",
+                },
+            },
+            C1: {
+                style: {
+                    textAlign: "right",
                 },
             },
         },

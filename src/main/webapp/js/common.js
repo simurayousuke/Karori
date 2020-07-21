@@ -231,6 +231,11 @@ let __shortUrlBase = "https://zhuangcloud.cn/s/";
 
     }
 
+    $.replace = function (str,a, b) {
+        let reg = new RegExp(a, "g");
+        return str.replace(reg, b);
+    }
+
 })(jQuery);
 
 const ptr = PullToRefresh.init({
