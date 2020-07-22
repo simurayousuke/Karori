@@ -6,7 +6,7 @@ let _totalCalculated;
 let _targetValues = {};
 let _baseMealDataUrl = "/api/v1";
 let shareToken = $.getPara("token");
-let _shareUrlStartWith=["https://www.zhuangcloud.cn/share?","https://zhuangcloud.cn/share?","https://127.0.0.1/share?","https://localhost/share?"];
+let _shareUrlStartWith = ["https://www.zhuangcloud.cn/share?", "https://zhuangcloud.cn/share?", "https://127.0.0.1/share?", "https://localhost/share?"];
 
 function getDate() {
     let reg = new RegExp("/[0-9]{4}-[0-9]{2}-[0-9]{2}$");
@@ -63,7 +63,7 @@ function _callback(data) {
     }
 }
 
-function replaceSpaceToNewLine(data){
+function replaceSpaceToNewLine(data) {
     /*data.forEach((row)=>{
         row.foodname=$.replace(row.foodname," ","\n");
         row.foodname=$.replace(row.foodname,"　","\n");
@@ -116,10 +116,10 @@ function initTargetData() {
 }
 
 function initData() {
-    if (location.href.indexOf("/share?")) {
-        _baseMealDataUrl += "/share/dateAndType";
-    } else {
+    if (location.href.indexOf("/share?") < 0) {
         _baseMealDataUrl += "/statistic/dateAndType";
+    } else {
+        _baseMealDataUrl += "/share/dateAndType";
     }
     initBreakfastData();
     initLunchData();
