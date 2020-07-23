@@ -22,4 +22,12 @@ public class LogApi extends ApiV1 {
             fail(Ret.by("code", 500).set("msg", res.get("logFail")));
     }
 
+    public void init247(){
+        Res res = getRes();
+        if (logService.init247(getUid()))
+            success(Ret.by("msg", res.get("logSuccess")));
+        else
+            fail(Ret.by("code", 500).set("msg", res.get("logFail")));
+    }
+
 }
