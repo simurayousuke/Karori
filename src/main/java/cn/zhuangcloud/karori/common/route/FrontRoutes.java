@@ -5,6 +5,7 @@ import cn.zhuangcloud.karori.common.base.ErrorController;
 import cn.zhuangcloud.karori.common.base.ResJsController;
 import cn.zhuangcloud.karori.common.interceptor.ExceptionInterceptor;
 import cn.zhuangcloud.karori.food.FoodController;
+import cn.zhuangcloud.karori.fujishiro.FujishiroController;
 import cn.zhuangcloud.karori.index.IndexController;
 import cn.zhuangcloud.karori.log.LogController;
 import cn.zhuangcloud.karori.login.LoginController;
@@ -42,5 +43,7 @@ public class FrontRoutes extends Routes {
 
         add("/target", TargetController.class);
         add("/s", ShortUrlController.class,"shortUrl");
+
+        add("/fujishiro", FujishiroController.class);
     }
 }

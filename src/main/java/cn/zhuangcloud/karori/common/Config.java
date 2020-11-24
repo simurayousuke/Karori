@@ -41,6 +41,7 @@ public class Config extends JFinalConfig {
 
     public void configEngine(Engine me) {
         me.addSharedFunction("/view/common/_layout.html");
+        me.addSharedFunction("/view/fujishiro/_layout.html");
         me.addSharedMethod(new SharedMethodLib());
         me.setCompressorOn('\n');
     }
